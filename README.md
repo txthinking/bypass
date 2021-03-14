@@ -4,15 +4,15 @@
 [![Slack](https://img.shields.io/badge/Join-Slack-ff69b4.svg)](https://docs.google.com/forms/d/e/1FAIpQLSdzMwPtDue3QoezXSKfhW88BXp57wkbDXnLaqokJqLeSWP9vQ/viewform)
 
 ```
-https://txthinking.github.io/bypass/chinadomain.list
+https://txthinking.github.io/bypass/chinadomain.txt
 ```
 
 ```
-https://txthinking.github.io/bypass/chinacidr4.list
+https://txthinking.github.io/bypass/chinacidr4.txt
 ```
 
 ```
-https://txthinking.github.io/bypass/chinacidr6.list
+https://txthinking.github.io/bypass/chinacidr6.txt
 ```
 
 ```

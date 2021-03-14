@@ -2,14 +2,14 @@
 
 for s
 do
-    if [ $(grep -e "^$s$" ../chinadomain.list | wc -l) -gt 0 ]
+    if [ $(grep -e "^$s$" ../chinadomain.txt | wc -l) -gt 0 ]
     then
         command -v gsed > /dev/null 2>&1
         if [ $? == 0 ]
         then
-            gsed -r -i "/^$s$/d" ../chinadomain.list
+            gsed -r -i "/^$s$/d" ../chinadomain.txt
         else
-            sed -r -i "/^$s$/d" ../chinadomain.list
+            sed -r -i "/^$s$/d" ../chinadomain.txt
         fi
         echo "Removed: $s"
     else
