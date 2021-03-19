@@ -3,7 +3,7 @@
 [![Donate](https://img.shields.io/badge/Support-Donate-ff69b4.svg)](https://www.txthinking.com/opensource-support.html)
 [![Slack](https://img.shields.io/badge/Join-Slack-ff69b4.svg)](https://docs.google.com/forms/d/e/1FAIpQLSdzMwPtDue3QoezXSKfhW88BXp57wkbDXnLaqokJqLeSWP9vQ/viewform)
 
-#### Domain List. 域名列表
+### Domain List. 域名列表
 
 ```
 https://txthinking.github.io/bypass/chinadomain.txt
@@ -19,25 +19,25 @@ Suffix match mode, example:
 * `cn`: 將會匹配 `cn`, `*.cn`, `*.*.cn`, ...<br/>
 * `a.com`: 將會匹配 `a.com`, `*.a.com`, `*.*.a.com`, ...<br/>
 
-#### CIDR4 List. IPv4列表
+### CIDR4 List. IPv4列表
 
 ```
 https://txthinking.github.io/bypass/chinacidr4.txt
 ```
 
-#### CIDR6 List. IPv6列表
+### CIDR6 List. IPv6列表
 
 ```
 https://txthinking.github.io/bypass/chinacidr6.txt
 ```
 
-#### On [Brook](https://github.com/txthinking/brook)
+### On [Brook](https://github.com/txthinking/brook)
 
 If you are using [Brook](https://github.com/txthinking/brook), Brook's rules are very simple, it uses the above three lists directly without special processing. Of course you can create your own list.
 
 如果正在用Brook, Brook的規則很簡單, 它直接使用上面三個列表, 不需要特別處理. 當然你可以創建自己的列表.
 
-#### Online PAC
+### Online PAC
 
 > With socks5://127.0.0.1:1080
 
