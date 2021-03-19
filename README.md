@@ -33,10 +33,9 @@ https://txthinking.github.io/bypass/chinacidr6.txt
 
 #### On [Brook](https://github.com/txthinking/brook)
 
-If you are using [Brook](https://github.com/txthinking/brook), Brook's rules are very simple, it uses the above three lists directly without special processing.
+If you are using [Brook](https://github.com/txthinking/brook), Brook's rules are very simple, it uses the above three lists directly without special processing. Of course you can create your own list.
 
-如果正在用Brook, Brook的規則很簡單, 它直接使用上面三個列表, 不需要特別處理.
-
+如果正在用Brook, Brook的規則很簡單, 它直接使用上面三個列表, 不需要特別處理. 當然你可以創建自己的列表.
 
 #### Online PAC
 
