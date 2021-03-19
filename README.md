@@ -11,13 +11,13 @@ https://txthinking.github.io/bypass/chinadomain.txt
 
 Suffix match mode, example:
 
-* `cn`: with match `cn`, `xxx.cn`, `xxx.xxx.cn`, ...<br/>
-* `a.com`: with match `a.com`, `xxx.a.com`, `xxx.xxx.a.com`, ...<br/>
+* `cn`: with match `cn`, `xxx.cn`, `xxx.xxx.cn`, ...; not match `xxxcn`, `xxx.xxxcn`<br/>
+* `a.com`: with match `a.com`, `xxx.a.com`, `xxx.xxx.a.com`, ...; not match `xxxa.com`<br/>
 
 後綴匹配模式, 比如:
 
-* `cn`: 將會匹配 `cn`, `xxx.cn`, `xxx.xxx.cn`, ...<br/>
-* `a.com`: 將會匹配 `a.com`, `xxx.a.com`, `xxx.xxx.a.com`, ...<br/>
+* `cn`: 將會匹配 `cn`, `xxx.cn`, `xxx.xxx.cn`, ...; 不會匹配 `xxxcn`, `xxx.xxxcn`<br/>
+* `a.com`: 將會匹配 `a.com`, `xxx.a.com`, `xxx.xxx.a.com`, ...; 不會匹配 `xxxa.com`<br/>
 
 ### CIDR4 List. IPv4列表
 
