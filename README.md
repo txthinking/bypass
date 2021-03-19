@@ -5,21 +5,19 @@
 
 #### Domain List. 域名列表
 
-Suffix match mode<br/>
-Example:<br/>
-`cn`: with match `cn`, `*.cn`, `*.*.cn`, ...<br/>
-`a.com`: with match `a.com`, `*.a.com`, `*.*.a.com`, ...<br/>
-
-後綴匹配模式<br/>
-比如:<br/>
-`cn`: 將會匹配 `cn`, `*.cn`, `*.*.cn`, ...<br/>
-`a.com`: 將會匹配 `a.com`, `*.a.com`, `*.*.a.com`, ...<br/>
-
-
-
 ```
 https://txthinking.github.io/bypass/chinadomain.txt
 ```
+
+Suffix match mode, example:
+
+* `cn`: with match `cn`, `*.cn`, `*.*.cn`, ...<br/>
+* `a.com`: with match `a.com`, `*.a.com`, `*.*.a.com`, ...<br/>
+
+後綴匹配模式, 比如:
+
+* `cn`: 將會匹配 `cn`, `*.cn`, `*.*.cn`, ...<br/>
+* `a.com`: 將會匹配 `a.com`, `*.a.com`, `*.*.a.com`, ...<br/>
 
 #### CIDR4 List. IPv4列表
 
@@ -32,6 +30,13 @@ https://txthinking.github.io/bypass/chinacidr4.txt
 ```
 https://txthinking.github.io/bypass/chinacidr6.txt
 ```
+
+#### On [Brook](https://github.com/txthinking/brook)
+
+If you are using [Brook](https://github.com/txthinking/brook), Brook's rules are very simple, it uses the above three lists directly without special processing.
+
+如果正在用Brook, Brook的規則很簡單, 它直接使用上面三個列表, 不需要特別處理.
+
 
 #### Online PAC
 
