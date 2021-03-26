@@ -11,13 +11,13 @@ https://txthinking.github.io/bypass/chinadomain.txt
 
 Match the current domain name and all its subdomains:
 
-* `cn`: with match `cn`, `xxx.cn`, `xxx.xxx.cn`, ...; not match `xxxcn`, `xxx.xxxcn`<br/>
-* `a.com`: with match `a.com`, `xxx.a.com`, `xxx.xxx.a.com`, ...; not match `xxxa.com`<br/>
+* `cn`: with match `cn`, `xxx.cn`, `xxx.xxx.cn`<br/>
+* `a.com`: with match `a.com`, `xxx.a.com`, `xxx.xxx.a.com`<br/>
 
 匹配當前域名及其所有子域名:
 
-* `cn`: 將會匹配 `cn`, `xxx.cn`, `xxx.xxx.cn`, ...; 不會匹配 `xxxcn`, `xxx.xxxcn`<br/>
-* `a.com`: 將會匹配 `a.com`, `xxx.a.com`, `xxx.xxx.a.com`, ...; 不會匹配 `xxxa.com`<br/>
+* `cn`: 將會匹配 `cn`, `xxx.cn`, `xxx.xxx.cn`<br/>
+* `a.com`: 將會匹配 `a.com`, `xxx.a.com`, `xxx.xxx.a.com`<br/>
 
 ## CIDR4 List. IPv4列表
 
