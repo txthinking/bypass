@@ -47,3 +47,11 @@ https://txthinking.github.io/bypass/china.pac
 
 > You can create PAC by yourself with [$ brook pac ...](https://github.com/txthinking/brook)<br/>
 > 你也可以創建自己的PAC: [$ brook pac ...](https://github.com/txthinking/brook)
+
+## Author
+
+A project by [txthinking](https://www.txthinking.com)
+
+## License
+
+Licensed under The MIT License
