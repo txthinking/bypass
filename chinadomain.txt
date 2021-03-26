@@ -2015,7 +2015,6 @@ appgame.com
 appinn.com
 appjiagu.com
 apple-mapkit.com
-apple.com
 apple2003.com
 appsimg.com
 appsina.com
@@ -2691,7 +2690,6 @@ cdgtw.net
 cdjjedu.net
 cdjsjx.com
 cdlkzb.com
-cdn-apple.com
 cdn.jsdelivr.net
 cdn20.com
 cdn86.net
