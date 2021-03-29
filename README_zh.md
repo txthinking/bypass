@@ -14,28 +14,16 @@
 
 ## 列表
 
-中国大陆域名列表
+sample
+
+> sample_domain/cidr4/cidr6) = apple + douban + internal<br/>
+> sample_block = baidu + taobao
 
 ```
-https://txthinking.github.io/bypass/chinadomain.txt
-```
-
-中国大陆广告域名列表
-
-```
-https://txthinking.github.io/bypass/chinaad.txt
-```
-
-中国大陆IPv4列表
-
-```
-https://txthinking.github.io/bypass/chinacidr4.txt
-```
-
-中国大陆IPv6列表
-
-```
-https://txthinking.github.io/bypass/chinacidr6.txt
+https://txthinking.github.io/bypass/sample_domain.txt
+https://txthinking.github.io/bypass/sample_cidr4.txt
+https://txthinking.github.io/bypass/sample_cidr6.txt
+https://txthinking.github.io/bypass/sample_block.txt
 ```
 
 ## 使用这些规则的软件

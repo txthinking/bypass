@@ -14,28 +14,17 @@ Match the current domain name and all its subdomains:
 
 ## List
 
-China mainland domain list
+
+sample
+
+> sample_domain/cidr4/cidr6) = apple + douban + internal<br/>
+> sample_block = baidu + taobao
 
 ```
-https://txthinking.github.io/bypass/chinadomain.txt
-```
-
-China mainland AD domain list
-
-```
-https://txthinking.github.io/bypass/chinaad.txt
-```
-
-China mainland IPv4 list
-
-```
-https://txthinking.github.io/bypass/chinacidr4.txt
-```
-
-China mainland IPv6 list
-
-```
-https://txthinking.github.io/bypass/chinacidr6.txt
+https://txthinking.github.io/bypass/sample_domain.txt
+https://txthinking.github.io/bypass/sample_cidr4.txt
+https://txthinking.github.io/bypass/sample_cidr6.txt
+https://txthinking.github.io/bypass/sample_block.txt
 ```
 
 ## Users

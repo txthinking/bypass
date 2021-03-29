@@ -1,0 +1,15 @@
+amap.com
+apple.com
+cdn-apple.com
+cdn-go.cn
+digicert.com
+douban.com
+doubanio.com
+entrust.net
+gtimg.com
+icloud.com
+mzstatic.com
+qq.com
+taobao.com
+umeng.com
+verisign.net
