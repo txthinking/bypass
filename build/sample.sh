@@ -16,6 +16,6 @@ cat \
   | sort | uniq > ../sample_cidr6.txt
 
 cat \
-  ../ads/baidu.txt \
-  ../ads/taobao.txt \
+  ../ad/baidu.txt \
+  ../ad/taobao.txt \
   | sort | uniq > ../sample_block.txt
