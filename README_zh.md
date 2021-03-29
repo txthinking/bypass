@@ -20,10 +20,10 @@
 https://txthinking.github.io/bypass/chinadomain.txt
 ```
 
-广告域名列表
+中国大陆广告域名列表
 
 ```
-https://txthinking.github.io/bypass/ad.txt
+https://txthinking.github.io/bypass/chinaad.txt
 ```
 
 中国大陆IPv4列表
