@@ -1,0 +1,7 @@
+apple.com
+icloud.com
+cdn-apple.com
+mzstatic.com
+entrust.net
+digicert.com
+verisign.net
