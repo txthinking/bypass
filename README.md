@@ -20,10 +20,10 @@ China mainland domain list
 https://txthinking.github.io/bypass/chinadomain.txt
 ```
 
-AD domain list
+China mainland AD domain list
 
 ```
-https://txthinking.github.io/bypass/ad.txt
+https://txthinking.github.io/bypass/chinaad.txt
 ```
 
 China mainland IPv4 list
