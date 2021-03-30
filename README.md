@@ -1,6 +1,6 @@
 # Bypass
 
-[English](README.md)
+[English](README_en.md)
 
 [![Donate](https://img.shields.io/badge/Support-Donate-ff69b4.svg)](https://www.txthinking.com/opensource-support.html)
 [![Chat Group](https://img.shields.io/badge/Join-Slack-ff69b4.svg)](https://docs.google.com/forms/d/e/1FAIpQLSdzMwPtDue3QoezXSKfhW88BXp57wkbDXnLaqokJqLeSWP9vQ/viewform)
@@ -12,9 +12,9 @@
 * `cn`: 將會匹配 `cn`, `xxx.cn`, `xxx.xxx.cn`
 * `a.com`: 將會匹配 `a.com`, `xxx.a.com`, `xxx.xxx.a.com`
 
-## 列表
+## 目前有的列表
 
-sample
+**sample**
 
 > sample_domain/cidr4/cidr6 = apple + douban + internal + wechat<br/>
 > sample_block(ad) = baidu + taobao
