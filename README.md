@@ -1,19 +1,18 @@
 # Bypass
 
-[中文](README_zh.md)
+[English](README.md)
 
 [![Donate](https://img.shields.io/badge/Support-Donate-ff69b4.svg)](https://www.txthinking.com/opensource-support.html)
-[![Slack](https://img.shields.io/badge/Join-Slack-ff69b4.svg)](https://docs.google.com/forms/d/e/1FAIpQLSdzMwPtDue3QoezXSKfhW88BXp57wkbDXnLaqokJqLeSWP9vQ/viewform)
+[![Chat Group](https://img.shields.io/badge/Join-Slack-ff69b4.svg)](https://docs.google.com/forms/d/e/1FAIpQLSdzMwPtDue3QoezXSKfhW88BXp57wkbDXnLaqokJqLeSWP9vQ/viewform)
 
-## Domain match rule
+## 域名匹配规则
 
-Match the current domain name and all its subdomains:
+匹配當前域名及其所有子域名:
 
-* `cn`: with match `cn`, `xxx.cn`, `xxx.xxx.cn`<br/>
-* `a.com`: with match `a.com`, `xxx.a.com`, `xxx.xxx.a.com`<br/>
+* `cn`: 將會匹配 `cn`, `xxx.cn`, `xxx.xxx.cn`
+* `a.com`: 將會匹配 `a.com`, `xxx.a.com`, `xxx.xxx.a.com`
 
-## List
-
+## 列表
 
 sample
 
@@ -27,14 +26,14 @@ https://txthinking.github.io/bypass/sample_cidr6.txt
 https://txthinking.github.io/bypass/sample_block.txt
 ```
 
-## Users
+## 使用这些规则的软件
 
 * [Brook](https://github.com/txthinking/brook)
 
-## Author
+## 作者
 
 A project by [txthinking](https://www.txthinking.com)
 
-## License
+## 开源协议
 
-Licensed under The MIT License
+基于 MIT 协议开源
