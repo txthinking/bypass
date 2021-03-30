@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat \
-  ../_ip/domain.txt \
+  ../_ipsite/domain.txt \
   ../apple/domain.txt \
   ../douban/domain.txt \
   ../wechat/domain.txt \
@@ -9,6 +9,7 @@ cat \
 
 cat \
   ../_internal/cidr4.txt \
+  ../_ipsite/cidr4.txt \
   ../apple/cidr4.txt \
   ../douban/cidr4.txt \
   ../wechat/cidr4.txt \
