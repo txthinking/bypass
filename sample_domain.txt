@@ -9,7 +9,13 @@ entrust.net
 gtimg.com
 icloud.com
 mzstatic.com
+qlogo.cn
+qpic.cn
 qq.com
+sinaimg.cn
 taobao.com
+truste.com
 umeng.com
 verisign.net
+wechat.com
+youdao.com

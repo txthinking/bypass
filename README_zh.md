@@ -16,7 +16,7 @@
 
 sample
 
-> sample_domain/cidr4/cidr6 = apple + douban + internal<br/>
+> sample_domain/cidr4/cidr6 = apple + douban + internal + wechat<br/>
 > sample_block(ad) = baidu + taobao
 
 ```
