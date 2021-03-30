@@ -8,10 +8,15 @@ doubanio.com
 entrust.net
 gtimg.com
 icloud.com
+ipapi.co
+ipify.org
+ipip.net
+ip.sb
 mzstatic.com
 qlogo.cn
 qpic.cn
 qq.com
+seeip.org
 sinaimg.cn
 taobao.com
 truste.com
