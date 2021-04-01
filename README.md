@@ -26,6 +26,14 @@ https://txthinking.github.io/bypass/sample_cidr6.txt
 https://txthinking.github.io/bypass/sample_block.txt
 ```
 
+**china**
+
+```
+https://txthinking.github.io/bypass/china_domain.txt
+https://txthinking.github.io/bypass/china_cidr4.txt
+https://txthinking.github.io/bypass/china_cidr6.txt
+```
+
 ## 使用这些规则的软件
 
 * [Brook](https://github.com/txthinking/brook)
