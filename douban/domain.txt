@@ -1,8 +1,0 @@
-douban.com
-qq.com
-amap.com
-gtimg.com
-cdn-go.cn
-taobao.com
-doubanio.com
-umeng.com

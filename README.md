@@ -16,9 +16,6 @@
 
 **sample**
 
-> sample_domain/cidr4/cidr6 = apple + douban + internal + wechat<br/>
-> sample_block(ad) = baidu + taobao
-
 ```
 https://txthinking.github.io/bypass/sample_domain.txt
 https://txthinking.github.io/bypass/sample_cidr4.txt
