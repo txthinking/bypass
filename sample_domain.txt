@@ -1,6 +1,7 @@
+197.com
 apple.com
 cdn-apple.com
-cdn-go.cn
+cn
 digicert.com
 entrust.net
 gtimg.com
@@ -10,12 +11,14 @@ ipify.org
 ipip.net
 ip.sb
 mzstatic.com
-qlogo.cn
-qpic.cn
 qq.com
 seeip.org
-sinaimg.cn
+servicewechat.com
+szwego.com
+tenpay.com
+tingyun.com
 truste.com
 verisign.net
 wechat.com
+wsxcme.com
 youdao.com
