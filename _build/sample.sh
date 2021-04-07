@@ -14,7 +14,7 @@ cat \
   ../apple/cidr4.txt \
   ../sankuai/cidr4.txt \
   ../tencent/cidr4.txt \
-  | sort | uniq > ../sample_cidr4.txt
+  | sort | uniq | cidr-merger > ../sample_cidr4.txt
 
 cat \
   ../alibaba/cidr6.txt \
