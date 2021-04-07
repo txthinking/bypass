@@ -20,7 +20,7 @@ cat \
   ../alibaba/cidr6.txt \
   ../apple/cidr6.txt \
   ../tencent/cidr6.txt \
-  | sort | uniq > ../sample_cidr6.txt
+  | sort | uniq | cidr-merger > ../sample_cidr6.txt
 
 cat \
   ../_ad/baidu.txt \
