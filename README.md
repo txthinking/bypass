@@ -34,6 +34,7 @@ https://txthinking.github.io/bypass/china_cidr6.txt
 ## 使用这些规则的软件
 
 * [Brook](https://github.com/txthinking/brook)
+* [ipio](https://github.com/txthinking/ipio)
 
 ## 作者
 
