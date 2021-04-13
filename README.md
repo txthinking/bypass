@@ -30,6 +30,10 @@ https://txthinking.github.io/bypass/china_domain.txt
 https://txthinking.github.io/bypass/china_cidr4.txt
 https://txthinking.github.io/bypass/china_cidr6.txt
 ```
+## 工具
+
+- 通过 [VioEye](https://www.txthinking.com) 采集App域名
+- 通过 [IPvBar](https://chrome.google.com/webstore/detail/ipvbar/copjmgogifdfjkaenpallapiidcpkjbm) 采集网站域名
 
 ## 使用这些规则的软件
 
