@@ -31,6 +31,11 @@ https://txthinking.github.io/bypass/china_cidr4.txt
 https://txthinking.github.io/bypass/china_cidr6.txt
 ```
 
+## 工具
+
+- Get app domains via [VioEye](https://www.txthinking.com)
+- Get website domains via [IPvBar](https://chrome.google.com/webstore/detail/ipvbar/copjmgogifdfjkaenpallapiidcpkjbm)
+
 ## Users
 
 * [Brook](https://github.com/txthinking/brook)
