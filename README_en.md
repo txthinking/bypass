@@ -14,7 +14,7 @@ Match the current domain name and all its subdomains:
 
 ## List
 
-**sample**
+**sample** = _internal + _ipsite + alibaba + apple + sankuai + tencent
 
 ```
 https://txthinking.github.io/bypass/sample_domain.txt

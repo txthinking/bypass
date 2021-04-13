@@ -14,7 +14,7 @@
 
 ## 目前有的列表
 
-**sample**
+**sample** = _internal + _ipsite + alibaba + apple + sankuai + tencent
 
 ```
 https://txthinking.github.io/bypass/sample_domain.txt
