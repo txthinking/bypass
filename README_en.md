@@ -34,6 +34,8 @@ https://txthinking.github.io/bypass/china_cidr6.txt
 ## Users
 
 * [Brook](https://github.com/txthinking/brook)
+* [ipio](https://github.com/txthinking/ipio)
+* [Socks5 Configurator](https://chrome.google.com/webstore/detail/hnpgnjkeaobghpjjhaiemlahikgmnghb)
 
 ## Author
 
