@@ -38,6 +38,7 @@ https://txthinking.github.io/bypass/china_cidr6.txt
 ## 使用这些规则的软件
 
 * [Brook](https://github.com/txthinking/brook)
+* [Shiliew](https://www.shiliew.com)
 * [ipio](https://github.com/txthinking/ipio)
 * [Socks5 Configurator](https://chrome.google.com/webstore/detail/hnpgnjkeaobghpjjhaiemlahikgmnghb)
 
