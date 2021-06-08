@@ -5,6 +5,8 @@
 [![Donate](https://img.shields.io/badge/Support-Donate-ff69b4.svg)](https://www.txthinking.com/opensource-support.html)
 [![Chat Group](https://img.shields.io/badge/Join-Slack-ff69b4.svg)](https://docs.google.com/forms/d/e/1FAIpQLSdzMwPtDue3QoezXSKfhW88BXp57wkbDXnLaqokJqLeSWP9vQ/viewform)
 
+❤️ A project by [txthinking.com](https://www.txthinking.com)
+
 ## 域名匹配规则
 
 匹配當前域名及其所有子域名:
@@ -41,10 +43,6 @@ https://txthinking.github.io/bypass/china_cidr6.txt
 * [Shiliew](https://www.shiliew.com)
 * [ipio](https://github.com/txthinking/ipio)
 * [Socks5 Configurator](https://chrome.google.com/webstore/detail/hnpgnjkeaobghpjjhaiemlahikgmnghb)
-
-## 作者
-
-A project by [txthinking](https://www.txthinking.com)
 
 ## 开源协议
 
