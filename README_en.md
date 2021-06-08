@@ -5,6 +5,8 @@
 [![Donate](https://img.shields.io/badge/Support-Donate-ff69b4.svg)](https://www.txthinking.com/opensource-support.html)
 [![Chat Group](https://img.shields.io/badge/Join-Slack-ff69b4.svg)](https://docs.google.com/forms/d/e/1FAIpQLSdzMwPtDue3QoezXSKfhW88BXp57wkbDXnLaqokJqLeSWP9vQ/viewform)
 
+❤️ A project by [txthinking.com](https://www.txthinking.com)
+
 ## Domain match rule
 
 Match the current domain name and all its subdomains:
@@ -42,10 +44,6 @@ https://txthinking.github.io/bypass/china_cidr6.txt
 * [Shiliew](https://www.shiliew.com)
 * [ipio](https://github.com/txthinking/ipio)
 * [Socks5 Configurator](https://chrome.google.com/webstore/detail/hnpgnjkeaobghpjjhaiemlahikgmnghb)
-
-## Author
-
-A project by [txthinking](https://www.txthinking.com)
 
 ## License
 
