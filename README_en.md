@@ -33,6 +33,12 @@ https://txthinking.github.io/bypass/china_cidr4.txt
 https://txthinking.github.io/bypass/china_cidr6.txt
 ```
 
+**adguard**
+
+```
+https://txthinking.github.io/bypass/adguard.txt
+```
+
 ## 工具
 
 - Get app domains via [VioEye](https://www.txthinking.com)
