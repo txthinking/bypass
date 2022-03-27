@@ -16,7 +16,7 @@
 
 ## 目前有的列表
 
-**sample** = _internal + _ipsite + alibaba + apple + sankuai + tencent
+**sample** = 部分 _internal + _ipsite + alibaba + apple + sankuai + tencent
 
 ```
 https://txthinking.github.io/bypass/sample_domain.txt
@@ -37,6 +37,18 @@ https://txthinking.github.io/bypass/china_cidr6.txt
 
 ```
 https://txthinking.github.io/bypass/adguard.txt
+```
+
+**adaway**
+
+```
+https://txthinking.github.io/bypass/adaway.txt
+```
+
+**anti**
+
+```
+https://txthinking.github.io/bypass/anti.txt
 ```
 
 ## 工具
