@@ -1,4 +1,0 @@
-amazon.com
-amazonaws.com
-cloudfront.net
-elasticbeanstalk.com
