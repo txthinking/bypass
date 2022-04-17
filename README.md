@@ -30,7 +30,9 @@ https://txthinking.github.io/bypass/china_cidr4.txt
 
 China CIDR6
 
+```
 https://txthinking.github.io/bypass/china_cidr6.txt
+```
 
 ## Block AD domain
 
