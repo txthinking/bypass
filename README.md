@@ -5,8 +5,6 @@
 [🩸 Youtube](https://www.youtube.com/txthinking)
 [❤️ Sponsor](https://github.com/sponsors/txthinking)
 
-❤️ A project by [txthinking.com](https://www.txthinking.com)
-
 ## Domain match rule. 域名匹配规则
 
 Match the current domain name and all its subdomains. 匹配當前域名及其所有子域名:
