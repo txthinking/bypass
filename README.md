@@ -58,7 +58,7 @@ https://txthinking.github.io/bypass/anti.txt
 
 -   可以通过 [App Privacy Report](https://www.txthinking.com) 采集 App 域名和 IP
 -   可以通过 [IPvBar](https://chrome.google.com/webstore/detail/ipvbar/copjmgogifdfjkaenpallapiidcpkjbm) 采集网站域名和 IP
--   [Brook](https://github.com/txthinking/brook)
+-   [brook](https://github.com/txthinking/brook)
 -   [Shiliew](https://www.shiliew.com)
 -   [tun2brook](https://github.com/txthinking/tun2brook)
 -   [Socks5 Configurator](https://chrome.google.com/webstore/detail/hnpgnjkeaobghpjjhaiemlahikgmnghb)
