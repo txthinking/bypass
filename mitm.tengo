@@ -5,6 +5,12 @@ text := import("text")
 
 _ := (func(request, response) {
     if(!response){
+        if(text.has_prefix(request["URL"], "http://ipip.ooo")){
+            return {
+                "StatusCode": 301,
+                "Location": text.replace(request["URL"], "http://", "https://", 1),
+            };
+        }
         if(text.has_prefix(request["URL"], "https://ipip.ooo")){
             request["User-Agent"] = "curl/7.79.1"
             return request
