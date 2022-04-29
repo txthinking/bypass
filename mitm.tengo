@@ -4,6 +4,9 @@
 text := import("text")
 
 _ := (func(request, response) {
+    
+    // Begin
+    
     if(!response){
         if(text.has_prefix(request["URL"], "http://ipip.ooo")){
             return {
@@ -18,4 +21,7 @@ _ := (func(request, response) {
         return request
     }
     return response
+    
+    // End
+    
 })(request, response)
