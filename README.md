@@ -22,13 +22,13 @@ https://txthinking.github.io/bypass/china_domain.txt
 
 China CIDR4
 
-[china_ip_list.txt](https://github.com/17mon/china_ip_list) + [private_cidr4.txt](https://github.com/txthinking/bypass/blob/master/private_cidr4.txt)
+[china_ip_list.txt](https://github.com/17mon/china_ip_list) + [private_cidr4.txt](https://github.com/txthinking/bypass/blob/master/private_cidr4.txt) + apple cidr4
 
 ```
 https://txthinking.github.io/bypass/china_cidr4.txt
 ```
 
-China CIDR6
+China CIDR6 + apple cidr6
 
 ```
 https://txthinking.github.io/bypass/china_cidr6.txt
