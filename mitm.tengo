@@ -1,0 +1,15 @@
+// How to write script: https://talks.txthinking.com/articles/brook-en.article#mitm
+// 如何写脚本: https://talks.txthinking.com/articles/brook.article#mitm
+
+text := import("text")
+
+_ := (func(request, response) {
+    if(!response){
+        if(text.has_prefix(request["URL"], "https://ipip.ooo")){
+            request["User-Agent"] = "curl/7.79.1"
+            return request
+        }
+        return request
+    }
+    return response
+})(request, response)
