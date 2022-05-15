@@ -1,0 +1,20 @@
+text := import("text")
+
+_ := (func(request, response) {
+
+    // Begin
+
+    if(!response){
+        if(text.has_prefix(request["URL"], "https://www.google.com/search?q=")){
+            return {
+                "StatusCode": 301,
+                "Location": text.replace(request["URL"], "https://www.google.com/search?q=", "https://soso.ooo/search.html?q=", 1)
+            }
+        }
+        return request
+    }
+    return response
+
+    // End
+
+})(request, response)
