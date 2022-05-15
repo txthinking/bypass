@@ -7,7 +7,7 @@ _ := (func(request, response) {
     if(!response){
         if(text.has_prefix(request["URL"], "https://www.google.com/search?q=")){
             return {
-                "StatusCode": 301,
+                "StatusCode": 302,
                 "Location": text.replace(request["URL"], "https://www.google.com/search?q=", "https://soso.ooo/search.html?q=", 1)
             }
         }
