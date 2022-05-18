@@ -2692,7 +2692,6 @@ cdjjedu.net
 cdjsjx.com
 cdlkzb.com
 cdn-apple.com
-cdn.jsdelivr.net
 cdn20.com
 cdn86.net
 cdnbee.com
@@ -6486,7 +6485,6 @@ js95598.com
 jsbc.com
 jscj.com
 jsckjqr.com
-jsdelivr.net
 jsenews.com
 jsfxh.org
 jsgc168.com
