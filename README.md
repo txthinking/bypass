@@ -54,6 +54,24 @@ https://txthinking.github.io/bypass/adaway.txt
 https://txthinking.github.io/bypass/anti.txt
 ```
 
+## MITM
+
+## 替换google搜索为https://soso.ooo
+
+```
+https://txthinking.github.io/bypass/mitm_google2soso.txt
+https://txthinking.github.io/bypass/mitm_google2soso.tengo
+```
+
+### Block Youtube APP AD 屏蔽Youtube App的广告
+
+version: [here](https://github.com/txthinking/bypass/blob/master/mitm_youtubeappadblock.tengo#L2)
+
+```
+https://txthinking.github.io/bypass/mitm_youtubeappadblock.txt
+https://txthinking.github.io/bypass/mitm_youtubeappadblock.tengo
+```
+
 ## Resources
 
 -   可以通过 [App Privacy Report](https://www.txthinking.com) 采集 App 域名和 IP
