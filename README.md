@@ -12,46 +12,15 @@ Match the current domain name and all its subdomains. 匹配當前域名及其�
 -   `cn`: `cn`, `xxx.cn`, `xxx.xxx.cn`
 -   `a.com`: `a.com`, `xxx.a.com`, `xxx.xxx.a.com`
 
-## China
+## Apple IP
 
-China 域名
+To use [Apple Push Notification](https://www.txthinking.com/talks/articles/brook-en.article#apple-push-problem) Service (APNs), your macOS, iOS, tvOS, and watchOS devices need a persistent connection to Apple's servers over Ethernet, cellular data (if capable), or Wi-Fi.
 
-```
-https://txthinking.github.io/bypass/china_domain.txt
-```
-
-China CIDR4
-
-[china_ip_list.txt](https://github.com/17mon/china_ip_list) + [private_cidr4.txt](https://github.com/txthinking/bypass/blob/master/private_cidr4.txt) + [apple cidr4](https://www.txthinking.com/talks/articles/brook-en.article#apple-push-problem)
+要接收[苹果推送](https://www.txthinking.com/talks/articles/brook.article#apple-%E6%8E%A8%E9%80%81%E9%97%AE%E9%A2%98)，Apple Server 只允许 Ethernet, cellular data, Wi-Fi 连接. 所以你需要 Bypass 掉相关域名和 IP.
 
 ```
 https://txthinking.github.io/bypass/china_cidr4.txt
-```
-
-China CIDR6 + [apple cidr6](https://www.txthinking.com/talks/articles/brook-en.article#apple-push-problem)
-
-```
 https://txthinking.github.io/bypass/china_cidr6.txt
-```
-
-## Block AD domain
-
-**adguard**
-
-```
-https://txthinking.github.io/bypass/adguard.txt
-```
-
-**adaway**
-
-```
-https://txthinking.github.io/bypass/adaway.txt
-```
-
-**anti**
-
-```
-https://txthinking.github.io/bypass/anti.txt
 ```
 
 ## MITM
@@ -75,7 +44,6 @@ https://txthinking.github.io/bypass/mitm_youtubeappadblock.tengo
 ## Resources
 
 -   可以通过 [App Privacy Report](https://www.txthinking.com) 采集 App 域名和 IP
--   可以通过 [IPvBar](https://chrome.google.com/webstore/detail/ipvbar/copjmgogifdfjkaenpallapiidcpkjbm) 采集网站域名和 IP
 -   [brook](https://github.com/txthinking/brook)
 -   [Shiliew](https://www.shiliew.com)
 -   [tun2brook](https://github.com/txthinking/tun2brook)
