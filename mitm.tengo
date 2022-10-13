@@ -8,13 +8,13 @@ _ := (func(request, response) {
     // Begin
     
     if(!response){
-        if(text.has_prefix(request["URL"], "http://ipip.ooo")){
+        if(text.has_prefix(request["URL"], "http://http3.ooo")){
             return {
                 "StatusCode": 301,
                 "Location": text.replace(request["URL"], "http://", "https://", 1)
             }
         }
-        if(text.has_prefix(request["URL"], "https://ipip.ooo")){
+        if(text.has_prefix(request["URL"], "https://http3.ooo")){
             request["User-Agent"] = "curl/7.79.1"
             return request
         }
