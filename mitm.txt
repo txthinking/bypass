@@ -1,2 +1,2 @@
-http://ipip.ooo:80
-https://ipip.ooo:443
+http://http3.ooo:80
+https://http3.ooo:443
