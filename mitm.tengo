@@ -24,7 +24,7 @@ _ := (func(request, response) {
         response["Body"] = bytes("You hacked me :)")
         return response
     }
-    
+    return response
     // End
     
 })(request, response)
