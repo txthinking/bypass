@@ -20,7 +20,10 @@ _ := (func(request, response) {
         }
         return request
     }
-    return response
+    if(text.has_prefix(request["URL"], "https://http3.ooo")){
+        response["Body"] = bytes("You hacked me :)")
+        return response
+    }
     
     // End
     
