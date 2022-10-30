@@ -21,14 +21,12 @@ aliapp.org
 alibaba-inc.com
 alibaba.com
 alibabausercontent.com
-alicdn.co
 alicdn.com
 alipay.com
 alipayobjects.com
 aliyun.com
 aliyuncs.com
 amap.com
-amazonaws.com
 amemv.com
 apple
 apple.com
@@ -80,13 +78,10 @@ cnzz.com
 cpatrk.net
 ctfile.com
 ctobsnssdk.com
-cwxugn.com
 dbankcloud.com
 dewu.com
 dewucdn.com
 dianping.com
-digicert.com
-doubleclick.net
 douyincdn.com
 douyinliving.com
 douyinstatic.com
@@ -101,7 +96,6 @@ easytomessage.com
 eckwai.com
 ecukwai.com
 effirst.com
-entrust.net
 etoote.com
 fengkongcloud.com
 fun.tv
@@ -185,7 +179,6 @@ migucloud.com
 miguvideo.com
 mmstat.com
 mob.com
-mozilla.com
 myapp.com
 myqcloud.com
 myzhiniu.com
@@ -195,7 +188,6 @@ netease.im
 nintyinc.com
 novelfm.com
 novelfmstatic.com
-ntp.org
 onethingpcs.com
 onewsvod.com
 oskwai.com
@@ -257,7 +249,6 @@ unionpay.com
 upqzfile.com
 vemarsdev.com
 vemarsstatic.com
-verisign.net
 vlabvod.com
 volceapplog.com
 volces.com
