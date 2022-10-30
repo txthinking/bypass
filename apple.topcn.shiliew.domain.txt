@@ -16,8 +16,6 @@
 adkwai.com
 adukwai.com
 aggrx.com
-akamai.com
-akamai.net
 ali-health.com
 aliapp.org
 alibaba-inc.com
@@ -105,7 +103,6 @@ ecukwai.com
 effirst.com
 entrust.net
 etoote.com
-facebook.com
 fengkongcloud.com
 fun.tv
 funshion.com
@@ -117,7 +114,6 @@ getui.com
 getui.net
 gifshow.com
 google-analytics.com
-google.com
 googletagmanager.com
 gotokeep.com
 gridsumdissector.com
@@ -140,7 +136,6 @@ idqqimg.com
 igexin.com
 ihuoshanlive.com
 imtmp.net
-in-addr.arpa
 inkuai.com
 ip6.arpa
 ipaddr.host
