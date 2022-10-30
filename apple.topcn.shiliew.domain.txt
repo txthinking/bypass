@@ -113,8 +113,6 @@ gepush.com
 getui.com
 getui.net
 gifshow.com
-google-analytics.com
-googletagmanager.com
 gotokeep.com
 gridsumdissector.com
 gtimg.com
