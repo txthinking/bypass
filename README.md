@@ -10,6 +10,6 @@ https://txthinking.github.io/bypass/apple_cidr4.txt
 https://txthinking.github.io/bypass/apple_cidr6.txt
 ```
 
-## Resources
+## Tools
 
 -   [App Privacy Report](https://www.txthinking.com/vioeye.html)
