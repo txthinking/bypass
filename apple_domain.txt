@@ -17,3 +17,4 @@ e2490.dscb.akamaiedge.net
 idms-apple.com.akadns.net
 apple.com.edgekey.net.globalredir.akadns.net
 e6858.dscx.akamaiedge.net
+ioshost.qtlcdn.com
