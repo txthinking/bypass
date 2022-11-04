@@ -1,4 +1,4 @@
-## 中国，不一定全，可以自己添加移除修改自己的规则
+## 中国，不一定全，可以自己添加移除修改自己的规则。域名都是后缀匹配模式
 
 https://txthinking.github.io/bypass/china_domain.txt
 
