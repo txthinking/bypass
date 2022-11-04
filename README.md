@@ -1,3 +1,11 @@
+## 大陆，不一定全，可以自己添加移除修改自己的规则
+
+https://txthinking.github.io/bypass/china_domain.txt
+
+https://txthinking.github.io/bypass/china_cidr4.txt
+
+https://txthinking.github.io/bypass/china_cidr6.txt
+
 ## Apple
 
 To use [Apple Push Notification](https://www.txthinking.com/talks/articles/brook-en.article#apple-push-problem) Service (APNs), your macOS, iOS, tvOS, and watchOS devices need a persistent connection to Apple's servers over Ethernet, cellular data (if capable), or Wi-Fi.
