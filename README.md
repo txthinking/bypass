@@ -10,7 +10,7 @@ https://txthinking.github.io/bypass/china_cidr6.txt
 
 To use [Apple Push Notification](https://www.txthinking.com/talks/articles/brook-en.article#apple-push-problem) Service (APNs), your macOS, iOS, tvOS, and watchOS devices need a persistent connection to Apple's servers over Ethernet, cellular data (if capable), or Wi-Fi.
 
-要接收[苹果推送](https://www.txthinking.com/talks/articles/brook.article#apple-%E6%8E%A8%E9%80%81%E9%97%AE%E9%A2%98)，Apple Server 只允许 Ethernet, cellular data, Wi-Fi 连接. 所以你需要 Bypass 掉相关域名和 IP.
+要接收[苹果推送](https://www.txthinking.com/talks/articles/brook.article#apple-%E6%8E%A8%E9%80%81%E9%97%AE%E9%A2%98)，Apple Server 只允许 Ethernet, cellular data, Wi-Fi 连接. 所以你需要 Bypass 掉相关域名和 IP. 域名不一定全。
 
 ```
 https://txthinking.github.io/bypass/apple_domain.txt
