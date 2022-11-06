@@ -28,6 +28,7 @@ _request := func(request){
 }
 
 _response := func(request, response){
+    delete(response, "Alt-Svc") // disable http3
     if text.has_prefix(request["URL"], "https://6.http3.ooo") {
         response["Body"] = bytes("You hacked me :)")
         return response
