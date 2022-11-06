@@ -1,0 +1,47 @@
+// Brook GUI > v20230101
+
+text := import("text")
+
+_rule := func(address) {
+    if address == "http3.ooo:80" {
+        return {"protocol": "http"}
+    }
+    if text.has_suffix(address, "http3.ooo:443") {
+        return {"protocol": "https"}
+    }
+    return {}
+}
+
+_request := func(request){
+    if text.has_prefix(request["URL"], "http://http3.ooo") {
+        response := {
+            "StatusCode": 301,
+            "Location": text.replace(request["URL"], "http://", "https://", 1)
+        }
+        return response
+    }
+    if text.has_prefix(request["URL"], "https://http3.ooo") {
+        request["User-Agent"] = "curl/7.79.1"
+        return request
+    }
+    return request
+}
+
+_response := func(request, response){
+    if text.has_prefix(request["URL"], "https://6.http3.ooo") {
+        response["Body"] = bytes("You hacked me :)")
+        return response
+    }
+    return response
+}
+
+result := {}
+if address {
+    result = _rule(address)
+}
+if request && !response {
+    result = _request(request)
+}
+if request && response {
+    result = _response(request, response)
+}
