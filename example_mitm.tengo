@@ -2,17 +2,23 @@
 
 text := import("text")
 
-_rule := func(address) {
-    if address == "http3.ooo:80" {
-        return {"protocol": "http"}
+domainaddress_handler := func(domainaddress) {
+    if domainaddress == "http3.ooo:80" {
+        return {"mitm": "http"}
     }
-    if text.has_suffix(address, "http3.ooo:443") {
-        return {"protocol": "https"}
+    if domainaddress == "6.http3.ooo:443" {
+        return {"mitm": "https", "withbody": true}
+    }
+    if domainaddress == "myip.ipip.net:443" {
+        return {"mitm": "https", "bypass": 4}
+    }
+    if text.has_suffix(domainaddress, ".local:80") {
+        return {"mitm": "http", "bypass": "192.168.18.146:80"}
     }
     return {}
 }
 
-_request := func(request){
+request_handler := func(request){
     if text.has_prefix(request["URL"], "http://http3.ooo") {
         response := {
             "StatusCode": 301,
@@ -27,22 +33,21 @@ _request := func(request){
     return request
 }
 
-_response := func(request, response){
-    delete(response, "Alt-Svc") // disable http3
+response_handler := func(request, response){
+    delete(response, "Alt-Svc") // Avoid upgrading to http3
     if text.has_prefix(request["URL"], "https://6.http3.ooo") {
-        response["Body"] = bytes("You hacked me :)")
+        response["Body"] = bytes("You hacked me!")
         return response
     }
     return response
 }
 
-result := {}
-if address {
-    result = _rule(address)
+if in_domainaddress { 
+    out = domainaddress_handler(in_domainaddress)
 }
-if request && !response {
-    result = _request(request)
+if in_request && !in_response {
+    out = request_handler(in_request)
 }
-if request && response {
-    result = _response(request, response)
+if in_request && in_response { 
+    out = response_handler(in_request, in_response)
 }
