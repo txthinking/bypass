@@ -10,7 +10,7 @@ domainaddress_handler := func(domainaddress) {
         return {"mitm": "https", "withbody": true}
     }
     if domainaddress == "myip.ipip.net:443" {
-        return {"mitm": "https", "bypass": 4}
+        return {"mitm": "https", "bypass": "4"}
     }
     if text.has_suffix(domainaddress, ".local:80") {
         return {"mitm": "http", "bypass": "192.168.18.146:80"}
