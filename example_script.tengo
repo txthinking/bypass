@@ -53,7 +53,7 @@ address_handler := func(address) {
         return
     }
     if address["network"] == "udp" && address["domainaddress"] {
-        if text.has_suffix(address["domainaddress"] == "http3.ooo:443") {
+        if text.has_suffix(address["domainaddress"], "http3.ooo:443") {
             return { "block": true }
         }
         return
