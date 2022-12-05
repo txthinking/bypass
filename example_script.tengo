@@ -44,11 +44,11 @@ address_handler := func(address) {
         if address["domainaddress"] == "6.http3.ooo:443" {
             return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
         }
-        if address["domainaddress"] == "myip.ipip.net:443" {
-            return {"byapss": true, "ipaddressfrombypassdns": "A", "mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
-        }
         if address["domainaddress"] == "example3.com:80" {
             return {"byapss": true, "ipaddress": "10.211.1.76:8080", "mitm": true, "mitmprotocol": "http", "mitmwithbody": true}
+        }
+        if address["domainaddress"] == "myip.ipip.net:443" {
+            return {"byapss": true, "ipaddressfrombypassdns": "A", "mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
         }
         return
     }
