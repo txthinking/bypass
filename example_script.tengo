@@ -38,6 +38,9 @@ address_handler := func(address) {
         if address["domainaddress"] == "soso.ooo:443" {
             return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
         }
+        if address["domainaddress"] == "4.http3.ooo:443" {
+            return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
+        }
         if address["domainaddress"] == "http3.ooo:80" {
             return {"mitm": true, "mitmprotocol": "http"}
         }
