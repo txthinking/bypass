@@ -84,7 +84,7 @@ httprequest_handler := func(request){
 httpresponse_handler := func(request, response){
     delete(response, "Alt-Svc") // Avoid upgrading to http3
     if text.has_prefix(request["URL"], "https://6.http3.ooo") {
-        response["Body"] = bytes("body has beed replaced!")
+        response["Body"] = bytes("body has been replaced!")
         return response
     }
     if text.has_prefix(request["URL"], "https://myip.ipip.net") {
