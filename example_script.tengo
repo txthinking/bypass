@@ -1,31 +1,28 @@
 text := import("text")
 brook := import("brook")
+json := import("json")
 
-dnsquery_handler := func(dnsquery){
-    if dnsquery["domain"] == "example.com"{
+dnsquery_handler := func(in){
+    if in.domain == "example.com"{
         return {"block": true}
     }
-    if dnsquery["domain"] == "example1.com"{
+    if in.domain == "example1.com"{
         return {"bypass": true}
     }
-    if dnsquery["domain"] == "example2.com" {
-        if dnsquery["type"] == "A" {
+    if in.domain == "example2.com" {
+        if in.type == "A" {
             return {ip: "10.211.1.76"}
         }
-        if dnsquery["type"] == "AAAA" {
+        if in.type == "AAAA" {
             return {"block": true}
         }
     }
 }
 
-address_handler := func(address) {
-    if address["ipaddress"] {
-        r := brook.splithostport(address["ipaddress"])
-        if is_error(r) {
-            // something wrong, return, you can debug via tun2brook on desktop terminal
-            return
-        }
-        if r["host"] == "1.2.4.8" {
+address_handler := func(in) {
+    if in.ipaddress {
+        r := brook.splithostport(in.ipaddress)
+        if r.host == "1.2.4.8" {
             return { "block": true }
         }
         s := brook.country(r.host)
@@ -34,32 +31,23 @@ address_handler := func(address) {
         }
         return
     }
-    if address["network"] == "tcp" && address["domainaddress"] {
-        if address["domainaddress"] == "soso.ooo:443" {
-            return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
-        }
-        if address["domainaddress"] == "4.http3.ooo:443" {
-            return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
-        }
-        if address["domainaddress"] == "http3.ooo:80" {
+    if in.network == "tcp" && in.domainaddress {
+        if in.domainaddress == "httpbin.org:80" {
             return {"mitm": true, "mitmprotocol": "http"}
         }
-        if address["domainaddress"] == "http3.ooo:443" {
-            return {"mitm": true, "mitmprotocol": "https"}
-        }
-        if address["domainaddress"] == "6.http3.ooo:443" {
+        if in.domainaddress == "httpbin.org:443" {
             return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
         }
-        if address["domainaddress"] == "example3.com:80" {
+        if in.domainaddress == "example3.com:80" {
             return {"bypass": true, "ipaddress": "10.211.1.76:8080", "mitm": true, "mitmprotocol": "http", "mitmwithbody": true}
         }
-        if address["domainaddress"] == "myip.ipip.net:443" {
+        if in.domainaddress == "myip.ipip.net:443" {
             return {"bypass": true, "ipaddressfrombypassdns": "A", "mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
         }
         return
     }
-    if address["network"] == "udp" && address["domainaddress"] {
-        if text.has_suffix(address["domainaddress"], "http3.ooo:443") {
+    if in.network == "udp" && in.domainaddress {
+        if text.has_suffix(in.domainaddress, "httpbin.org:443") {
             return { "block": true }
         }
         return
@@ -67,14 +55,14 @@ address_handler := func(address) {
 }
 
 httprequest_handler := func(request){
-    if text.has_prefix(request["URL"], "http://http3.ooo") {
+    if text.has_prefix(request["URL"], "http://httpbin.org") {
         response := {
             "StatusCode": 301,
             "Location": text.replace(request["URL"], "http://", "https://", 1)
         }
         return response
     }
-    if text.has_prefix(request["URL"], "https://http3.ooo") {
+    if text.has_prefix(request["URL"], "https://httpbin.org") {
         request["User-Agent"] = "curl/7.79.1"
         return request
     }
@@ -83,12 +71,14 @@ httprequest_handler := func(request){
 
 httpresponse_handler := func(request, response){
     delete(response, "Alt-Svc") // Avoid upgrading to http3
-    if text.has_prefix(request["URL"], "https://6.http3.ooo") {
-        response["Body"] = bytes("body has been replaced!")
+    if text.has_prefix(request["URL"], "https://httpbin.org/get") {
+        j := json.decode(response["Body"])
+        j.origin = "m.a.r.s"
+        response["Body"] = json.encode(j)
         return response
     }
     if text.has_prefix(request["URL"], "https://myip.ipip.net") {
-        response["Body"] += bytes(" run, run, run, brook...")
+        response["Body"] += bytes(text.re_replace(`\d+\.\d+\.\d+\.\d+`, string(response["Body"]), "1.2.3.4"))
         return response
     }
     return response
