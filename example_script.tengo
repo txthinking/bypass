@@ -2,26 +2,26 @@ text := import("text")
 brook := import("brook")
 json := import("json")
 
-dnsquery_handler := func(in){
-    if in.domain == "example.com"{
+dnsquery_handler := func(m){
+    if m.domain == "example.com"{
         return {"block": true}
     }
-    if in.domain == "example1.com"{
+    if m.domain == "example1.com"{
         return {"bypass": true}
     }
-    if in.domain == "example2.com" {
-        if in.type == "A" {
+    if m.domain == "example2.com" {
+        if m.type == "A" {
             return {ip: "10.211.1.76"}
         }
-        if in.type == "AAAA" {
+        if m.type == "AAAA" {
             return {"block": true}
         }
     }
 }
 
-address_handler := func(in) {
-    if in.ipaddress {
-        r := brook.splithostport(in.ipaddress)
+address_handler := func(m) {
+    if m.ipaddress {
+        r := brook.splithostport(m.ipaddress)
         if r.host == "1.2.4.8" {
             return { "block": true }
         }
@@ -31,23 +31,23 @@ address_handler := func(in) {
         }
         return
     }
-    if in.network == "tcp" && in.domainaddress {
-        if in.domainaddress == "httpbin.org:80" {
+    if m.network == "tcp" && m.domainaddress {
+        if m.domainaddress == "httpbin.org:80" {
             return {"mitm": true, "mitmprotocol": "http"}
         }
-        if in.domainaddress == "httpbin.org:443" {
+        if m.domainaddress == "httpbin.org:443" {
             return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
         }
-        if in.domainaddress == "example3.com:80" {
+        if m.domainaddress == "example3.com:80" {
             return {"bypass": true, "ipaddress": "10.211.1.76:8080", "mitm": true, "mitmprotocol": "http", "mitmwithbody": true}
         }
-        if in.domainaddress == "myip.ipip.net:443" {
+        if m.domainaddress == "myip.ipip.net:443" {
             return {"bypass": true, "ipaddressfrombypassdns": "A", "mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
         }
         return
     }
-    if in.network == "udp" && in.domainaddress {
-        if text.has_suffix(in.domainaddress, "httpbin.org:443") {
+    if m.network == "udp" && m.domainaddress {
+        if text.has_suffix(m.domainaddress, "httpbin.org:443") {
             return { "block": true }
         }
         return
