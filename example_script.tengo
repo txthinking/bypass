@@ -22,6 +22,9 @@ dnsquery_handler := func(m){
 address_handler := func(m) {
     if m.ipaddress {
         r := brook.splithostport(m.ipaddress)
+        if is_error(r) {
+            return r
+        }
         if r.host == "1.2.4.8" {
             return { "block": true }
         }
@@ -78,7 +81,7 @@ httpresponse_handler := func(request, response){
         return response
     }
     if text.has_prefix(request["URL"], "https://myip.ipip.net") {
-        response["Body"] += bytes(text.re_replace(`\d+\.\d+\.\d+\.\d+`, string(response["Body"]), "1.2.3.4"))
+        response["Body"] = bytes(text.re_replace(`\d+\.\d+\.\d+\.\d+`, string(response["Body"]), "1.2.3.4")) // todo check error
         return response
     }
     return response
