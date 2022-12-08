@@ -81,7 +81,7 @@ httpresponse_handler := func(request, response){
         return response
     }
     if text.has_prefix(request["URL"], "https://myip.ipip.net") {
-        response["Body"] = bytes(text.re_replace(`\d+\.\d+\.\d+\.\d+`, string(response["Body"]), "1.2.3.4")) // todo check error
+        response["Body"] = bytes(text.split(string(response["Body"]), "IP")[0] + "来自: 火星")
         return response
     }
     return response
