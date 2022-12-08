@@ -2,7 +2,7 @@ text := import("text")
 brook := import("brook")
 json := import("json")
 
-config_handler := func(){
+guiconfig_handler := func(){
     return {
         "systemdns4": "8.8.8.8",
         "systemdns6": "2001:4860:4860::8888",
@@ -101,8 +101,8 @@ httpresponse_handler := func(request, response){
 }
 
 handler := func(){
-    if in_config {
-        return config_handler()
+    if in_guiconfig {
+        return guiconfig_handler()
     }
     if in_dnsquery {
         return dnsquery_handler(in_dnsquery)
