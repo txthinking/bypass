@@ -39,18 +39,18 @@ address_handler := func(m) {
             return {"mitm": true, "mitmprotocol": "http"}
         }
         if m.domainaddress == "httpbin.org:443" {
-            return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
+            return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
         }
         if m.domainaddress == "example3.com:80" {
-            return {"bypass": true, "ipaddress": "10.211.1.76:8080", "mitm": true, "mitmprotocol": "http", "mitmwithbody": true}
+            return {"bypass": true, "ipaddress": "10.211.1.76:8080", "mitm": true, "mitmprotocol": "http", "mitmwithbody": true, "mitmautohandlecompress": true}
         }
         if m.domainaddress == "myip.ipip.net:443" {
-            return {"bypass": true, "ipaddressfrombypassdns": "A", "mitm": true, "mitmprotocol": "https", "mitmwithbody": true}
+            return {"bypass": true, "ipaddressfrombypassdns": "A", "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
         }
         return
     }
     if m.network == "udp" && m.domainaddress {
-        if text.has_suffix(m.domainaddress, "httpbin.org:443") {
+        if m.domainaddress == "httpbin.org:443" {
             return { "block": true }
         }
         return
