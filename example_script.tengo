@@ -39,6 +39,9 @@ address_handler := func(m) {
     if m.network == "udp" && m.domainaddress && text.has_suffix(m.domainaddress, ":443") {
         return { "block": true }
     }
+    if m.network == "tcp" && m.domainaddress && m.domainaddress == "myip.ipip.net:443" {
+        return {"ipaddressfrombypassdns": "A", "bypass": true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+    }
     if m.network == "tcp" && m.domainaddress && text.has_suffix(m.domainaddress, ":443") {
         return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
     }
