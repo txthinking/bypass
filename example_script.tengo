@@ -58,7 +58,7 @@ address_handler := func(m) {
             return {"ipaddress": "10.211.1.76:8080", "bypass": true, "mitm": true, "mitmprotocol": "http", "mitmwithbody": true, "mitmautohandlecompress": true}
         }
         if m.domainaddress == "myip.ipip.net:443" {
-            return {"bypass": true, "ipaddressfrombypassdns": "A", "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+            return {"ipaddressfrombypassdns": "A", "bypass": true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
         }
         return
     }
