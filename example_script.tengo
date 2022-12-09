@@ -87,7 +87,7 @@ httprequest_handler := func(request){
 
 httpresponse_handler := func(request, response){
     delete(response, "Alt-Svc") // Avoid upgrading to http3
-    if text.has_prefix(request["URL"], "https://httpbin.org") && response["Content-Type"] == "application/json" {
+    if text.has_prefix(request["URL"], "https://httpbin.org") && !text.has_prefix(request["URL"], "https://httpbin.org/stream/") && response["Content-Type"] == "application/json" {
         j := json.decode(response["Body"])
         j.origin = "M.A.R.S"
         response["Body"] = json.encode(j)
