@@ -2,19 +2,6 @@ text := import("text")
 brook := import("brook")
 json := import("json")
 
-guiconfig_handler := func(){
-    return {
-        "systemdns4": "8.8.8.8",
-        "systemdns6": "2001:4860:4860::8888",
-        "fakedns": true,
-        "block": true,
-        "bypass": false,
-        "bypassdns4": "https://dns.alidns.com/dns-query?address=223.5.5.5%3A443",
-        "bypassdns6": "https://dns.alidns.com/dns-query?address=%5B2400%3A3200%3A%3A1%5D%3A443",
-        "hosts": false
-    }
-}
-
 dnsquery_handler := func(m){
     if m.domain == "example.com"{
         return {"block": true}
@@ -29,6 +16,9 @@ dnsquery_handler := func(m){
         if m.type == "AAAA" {
             return {"block": true}
         }
+    }
+    if m.type == "AAAA" {
+        return {"block": true}
     }
 }
 
@@ -46,6 +36,9 @@ address_handler := func(m) {
         return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
     }
     
+    if m.ipaddress && (m.ipaddress == "8.8.8.8:853" || m.ipaddress == "8.8.8.8:443" || m.ipaddress == "[2001:4860:4860::8888]:853" || m.ipaddress == "[2001:4860:4860::8888]:443") {
+        return { "block": true }
+    }
     if m.ipaddress {
         r := brook.splithostport(m.ipaddress)
         if is_error(r) {
@@ -114,9 +107,6 @@ httpresponse_handler := func(request, response){
 }
 
 handler := func(){
-    if in_guiconfig {
-        return guiconfig_handler()
-    }
     if in_dnsquery {
         return dnsquery_handler(in_dnsquery)
     }
