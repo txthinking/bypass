@@ -14,7 +14,7 @@ guiconfig_handler := func(){
         "bypass": false,
         "bypassdns4": "https://dns.alidns.com/dns-query?address=223.5.5.5%3A443",
         "bypassdns6": "https://dns.alidns.com/dns-query?address=%5B2400%3A3200%3A%3A1%5D%3A443",
-        "hosts": false
+        "hosts": true
     }
 }
 
