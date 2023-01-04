@@ -1,4 +1,0 @@
-https://googlevideo.com:443
-https://www.youtube.com:443
-https://s.youtube.com:443
-https://youtubei.googleapis.com:443
