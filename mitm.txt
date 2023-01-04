@@ -1,4 +1,0 @@
-http://http3.ooo:80
-https://http3.ooo:443
-https://4.http3.ooo:443
-https://6.http3.ooo:443
