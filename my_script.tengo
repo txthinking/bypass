@@ -1,0 +1,343 @@
+// The script I use myself (M1 Mac/iOS/Android, for other systems, fork, modify by yourself)
+//
+// 自用脚本 (M1 Mac/iOS/Android, 其他系统可fork后自行修改适配)
+//
+// 搭配 GUI 的配置使用:
+//
+// System DNS: 8.8.8.8 2001:4860:4860::8888
+// Fake DNS: 开启
+// Block: 开启
+// Block Domain: https://txthinking.github.io/bypass/example_block.txt
+// Bypass: 开启
+// Bypass IP: https://txthinking.github.io/bypass/china_cidr4.txt https://txthinking.github.io/bypass/china_cidr6.txt ZZ,CN
+// Bypass Domain: https://txthinking.github.io/bypass/china_domain.txt
+// Bypass DNS: https://dns.alidns.com/dns-query?address=223.5.5.5:443 https://dns.alidns.com/dns-query?address=%5B2400%3A3200%3A%3A1%5D%3A443
+
+text := import("text")
+brook := import("brook")
+
+///////////////////// Modules ////////////////////////
+modules := []
+
+///////////////////// Block google secure DNS on system or browser ///////////////
+modules = append(modules, {
+    address: func(m) {
+        if m.ipaddress && (m.ipaddress == "8.8.8.8:853" || m.ipaddress == "8.8.8.8:443" || m.ipaddress == "[2001:4860:4860::8888]:853" || m.ipaddress == "[2001:4860:4860::8888]:443") {
+            return { "block": true }
+        }
+        if m.domainaddress && m.domainaddress == "dns.google:443" {
+            return { "block": true }
+        }
+    }
+})
+
+//////////////////// Block IPv6 AAAA query /////////////////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.type == "AAAA" {
+            return {"block": true}
+        }
+    }
+})
+
+//////////////////// Instagram itself has a non-standard dns cache, so we don't use fakedns for it /////////////////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if text.has_suffix(m.domain, "facebook.com") ||
+            text.has_suffix(m.domain, "fbcdn.net") ||
+            text.has_suffix(m.domain, "facebook.net") ||
+            text.has_suffix(m.domain, "akamaihd.net") ||
+            text.has_suffix(m.domain, "thefacebook.com") ||
+            text.has_suffix(m.domain, "tfbnw.net") ||
+            text.has_suffix(m.domain, "messenger.com") ||
+            text.has_suffix(m.domain, "fb.me") ||
+            text.has_suffix(m.domain, "fbsbx.com") ||
+            text.has_suffix(m.domain, "fb.com") ||
+            text.has_suffix(m.domain, "whatsapp.net") ||
+            text.has_suffix(m.domain, "whatsapp.com") ||
+            text.has_suffix(m.domain, "instagram.com") ||
+            text.has_suffix(m.domain, "cdninstagram.com") {
+            return {"system": true}
+        }
+    }
+})
+
+//////////////////// www.google.cn 重定向到 www.google.com ///////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.domain == "www.google.cn" {
+            return {forcefakedns: true}
+        }
+    },
+    address: func(m) {
+        if m.domainaddress {
+            if m.domainaddress == "www.google.cn:80" {
+                if m.network == "tcp" {
+                    return {"mitm": true, "mitmprotocol": "http"}
+                }
+            }
+            if m.domainaddress == "www.google.cn:443" {
+                if m.network == "tcp" {
+                    return {"mitm": true, "mitmprotocol": "https"}
+                }
+                if m.network == "udp" {
+                    return { "block": true }
+                }
+            }
+        }
+    },
+    httprequest: func(request) {
+        if text.has_prefix(request["URL"], "http://www.google.cn/") {
+            return {
+                "StatusCode": 302,
+                "Location": text.replace(request["URL"], "http://www.google.cn", "https://www.google.com", 1)
+            }
+        }
+        if text.has_prefix(request["URL"], "https://www.google.cn/") {
+            return {
+                "StatusCode": 302,
+                "Location": text.replace(request["URL"], "https://www.google.cn", "https://www.google.com", 1)
+            }
+        }
+    }
+})
+
+////////////////// 手机端的 Chrome 替换 Google搜索为 soso.ooo ///////////////
+modules = append(modules, {
+    address: func(m) {
+        if (brook.os == "ios" || brook.os == "android") && m.domainaddress && m.domainaddress == "www.google.com:443" {
+            if m.network == "tcp" {
+                return {"mitm": true, "mitmprotocol": "https"}
+            }
+            if m.network == "udp" {
+                return { "block": true }
+            }
+        }
+    },
+    httprequest: func(request) {
+        if text.has_prefix(request["URL"], "https://www.google.com/search?q=") && (text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android")) {
+            return {
+                "StatusCode": 302,
+                "Location": text.replace(request["URL"], "https://www.google.com/search?q=", "https://soso.ooo/search.html?q=", 1)
+            }
+        }
+    }
+})
+
+//////////////// 移除 91 广告 /////////////////////////////////
+modules = append(modules, {
+    address: func(m) {
+        if m.network == "tcp" && m.domainaddress {
+            if m.domainaddress == "91porn.com:443" {
+                return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+            }
+            if m.domainaddress == "91porn.com:80" {
+                return {"mitm": true, "mitmprotocol": "http", "mitmwithbody": true, "mitmautohandlecompress": true}
+            }
+            return
+        }
+        if m.network == "udp" && m.domainaddress {
+            if m.domainaddress == "91porn.com:443" {
+                return { "block": true }
+            }
+            return
+        }
+    },
+    httpresponse: func(request, response) {
+        if (text.has_prefix(request["URL"], "http://91porn.com/") || text.has_prefix(request["URL"], "https://91porn.com/")) && response["Content-Type"] == "text/html; charset=UTF-8" {
+            response["Body"] = bytes(text.replace(string(response["Body"]), "</head>", `<style>img[class*="ad_img"] {display: none!important;}iframe[src*="ads"] {display: none!important;}img[href*='.gif'] {display: none!important;}</style></head>`, 1))
+            return response
+        }
+    }
+})
+
+//////////// 知乎登录弹窗，跳转外部链接 /////////////////////////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.domain == "www.zhihu.com" || m.domain == "zhuanlan.zhihu.com" || m.domain == "link.zhihu.com" {
+            return {forcefakedns: true}
+        }
+    },
+    address: func(m) {
+        if m.domainaddress && (m.domainaddress == "www.zhihu.com:443" || m.domainaddress == "zhuanlan.zhihu.com:443" || m.domainaddress == "link.zhihu.com:443") {
+            if m.network == "tcp" {
+                return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+            }
+            if m.network == "udp" {
+                return { "block": true }
+            }
+        }
+    },
+    httpresponse: func(request, response) {
+        if text.has_prefix(request["URL"], "https://zhuanlan.zhihu.com/p/") || text.has_prefix(request["URL"], "https://www.zhihu.com/question/") {
+            delete(response, "Content-Security-Policy")
+            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('button[aria-label="关闭"]'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
+            return response
+        }
+        if text.has_prefix(request["URL"], "https://link.zhihu.com/") {
+            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('.button'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
+            return response
+        }
+    }
+})
+
+//////////// 掘金忽略下载app，跳转外部链接继续访问 /////////////////////////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.domain == "link.juejin.cn" || (m.domain == "juejin.cn" && (brook.os=="ios" || brook.os=="android")) {
+            return {forcefakedns: true}
+        }
+    },
+    address: func(m) {
+        if m.domainaddress && (m.domainaddress == "link.juejin.cn:443" || m.domainaddress == "juejin.cn:443"){
+            if m.network == "tcp" {
+                return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+            }
+            if m.network == "udp" {
+                return { "block": true }
+            }
+        }
+    },
+    httpresponse: func(request, response) {
+        if text.has_prefix(request["URL"], "https://link.juejin.cn/") {
+            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('.btn'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
+            return response
+        }
+        if text.has_prefix(request["URL"], "https://juejin.cn/post/") && (text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android")) {
+            response["Body"] = bytes(text.replace(string(response["Body"]), "</body>", `<script>function fuck(){var a = document.querySelector('.byte-drawer__wrapper .cancel-btn'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script></body>`, 1))
+            return response
+        }
+    }
+})
+
+//////////// 简书弹窗广告，忽略下载app，继续浏览，继续跳转提示 /////////////////////////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.domain == "udiab1.jianshu.com" || m.domain == "udiab2.jianshu.com" {
+            return {block: true}
+        }
+        if m.domain == "www.jianshu.com" {
+            return {forcefakedns: true}
+        }
+    },
+    address: func(m) {
+        if m.domainaddress && m.domainaddress == "www.jianshu.com:443" {
+            if m.network == "tcp" {
+                return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+            }
+            if m.network == "udp" {
+                return { "block": true }
+            }
+        }
+    },
+    httpresponse: func(request, response) {
+        if text.has_prefix(request["URL"], "https://www.jianshu.com/p/") && (text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android")) {
+            s := `
+                function fuck(){
+                    var a = document.querySelector('.guidance-content > div > div:last-child > div:last-child'); if(a) {a.click()} else {setTimeout(fuck, 1000)}
+                }
+                setTimeout(fuck, 1000)
+                function fuck1(){
+                    var a = document.querySelector('.close-collapse-btn'); if(a) {a.click()} else {setTimeout(fuck1, 1000)}
+                }
+                setTimeout(fuck1, 1000)
+                function fuck2(){
+                    var a = document.querySelector('.content-1VCge_0 .cancel'); if(a) {a.click()} else {setTimeout(fuck2, 1000)}
+                }
+                setTimeout(fuck2, 1000)
+            `
+            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>`+s+`</script>`, 1))
+            return response
+        }
+        if text.has_prefix(request["URL"], "https://www.jianshu.com/go-wild") {
+            if text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android") {
+                response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('body > div > div > div:last-child > a'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
+                return response
+            }
+            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('body > div > div:last-child > div'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
+            return response
+        }
+    }
+})
+
+/////////// END Modules /////////////////////////////////
+
+gf := undefined
+for i:=0; i<len(modules); i++{
+    if modules[i]["guiconfig"] {
+        gf = modules[i]["guiconfig"]
+        break
+    }
+}
+dh := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["dnsquery"] {
+        dh = append(dh, modules[i]["dnsquery"])
+    }
+}
+ah := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["address"] {
+        ah = append(ah, modules[i]["address"])
+    }
+}
+hrh := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["httprequest"] {
+        hrh = append(hrh, modules[i]["httprequest"])
+    }
+}
+hrrh := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["httpresponse"] {
+        hrrh = append(hrrh, modules[i]["httpresponse"])
+    }
+}
+modules = undefined
+
+handler := func() {
+    if in_guiconfig {
+        if gf {
+            return gf()
+        }
+        return
+    }
+    if in_dnsquery {
+        for i:=0; i<len(dh); i++{
+            r := dh[i](in_dnsquery)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return
+    }
+    if in_address {
+        for i:=0; i<len(ah); i++{
+            r := ah[i](in_address)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return
+    }
+    if in_httprequest && !in_httpresponse {
+        for i:=0; i<len(hrh); i++{
+            r := hrh[i](in_httprequest)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return in_httprequest
+    }
+    if in_httprequest && in_httpresponse {
+        delete(in_httpresponse, "Alt-Svc") // Avoid upgrading to http3 from http1 or http2
+        for i:=0; i<len(hrrh); i++{
+            r := hrrh[i](in_httprequest, in_httpresponse)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return in_httpresponse
+    }
+}
+out := handler()
