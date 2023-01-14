@@ -20,4 +20,5 @@ https://txthinking.github.io/bypass/apple_cidr6.txt
 
 ## Tools
 
--   [App Privacy Report](https://www.txthinking.com/vioeye.html)
+-   [App](https://www.txthinking.com/vioeye.html)
+- [Chrome](https://chrome.google.com/webstore/detail/ipvfoo/ecanpcehffngcegjmadlcijfolapggal)
