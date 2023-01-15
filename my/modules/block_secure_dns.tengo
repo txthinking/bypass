@@ -1,0 +1,13 @@
+///////////////////// Block google secure DNS on system or browser ///////////////
+modules = append(modules, {
+    address: func(m) {
+        if m.ipaddress && (m.ipaddress == "8.8.8.8:853" || m.ipaddress == "8.8.8.8:443" || m.ipaddress == "[2001:4860:4860::8888]:853" || m.ipaddress == "[2001:4860:4860::8888]:443") {
+            return { "block": true }
+        }
+        if m.domainaddress && m.domainaddress == "dns.google:443" {
+            return { "block": true }
+        }
+    }
+})
+
+

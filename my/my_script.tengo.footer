@@ -1,0 +1,82 @@
+
+/////////// END Modules /////////////////////////////////
+
+gf := undefined
+for i:=0; i<len(modules); i++{
+    if modules[i]["guiconfig"] {
+        gf = modules[i]["guiconfig"]
+        break
+    }
+}
+dh := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["dnsquery"] {
+        dh = append(dh, modules[i]["dnsquery"])
+    }
+}
+ah := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["address"] {
+        ah = append(ah, modules[i]["address"])
+    }
+}
+hrh := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["httprequest"] {
+        hrh = append(hrh, modules[i]["httprequest"])
+    }
+}
+hrrh := []
+for i:=0; i<len(modules); i++{
+    if modules[i]["httpresponse"] {
+        hrrh = append(hrrh, modules[i]["httpresponse"])
+    }
+}
+modules = undefined
+
+handler := func() {
+    if in_guiconfig {
+        if gf {
+            return gf()
+        }
+        return
+    }
+    if in_dnsquery {
+        for i:=0; i<len(dh); i++{
+            r := dh[i](in_dnsquery)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return
+    }
+    if in_address {
+        for i:=0; i<len(ah); i++{
+            r := ah[i](in_address)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return
+    }
+    if in_httprequest && !in_httpresponse {
+        for i:=0; i<len(hrh); i++{
+            r := hrh[i](in_httprequest)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return in_httprequest
+    }
+    if in_httprequest && in_httpresponse {
+        delete(in_httpresponse, "Alt-Svc") // Avoid upgrading to http3 from http1 or http2
+        for i:=0; i<len(hrrh); i++{
+            r := hrrh[i](in_httprequest, in_httpresponse)
+            if is_error(r) || is_map(r) {
+                return r
+            }
+        }
+        return in_httpresponse
+    }
+}
+out := handler()

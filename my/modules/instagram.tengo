@@ -1,0 +1,23 @@
+//////////////////// Instagram itself has a non-standard dns cache, so we don't use fakedns for it /////////////////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if text.has_suffix(m.domain, "facebook.com") ||
+            text.has_suffix(m.domain, "fbcdn.net") ||
+            text.has_suffix(m.domain, "facebook.net") ||
+            text.has_suffix(m.domain, "akamaihd.net") ||
+            text.has_suffix(m.domain, "thefacebook.com") ||
+            text.has_suffix(m.domain, "tfbnw.net") ||
+            text.has_suffix(m.domain, "messenger.com") ||
+            text.has_suffix(m.domain, "fb.me") ||
+            text.has_suffix(m.domain, "fbsbx.com") ||
+            text.has_suffix(m.domain, "fb.com") ||
+            text.has_suffix(m.domain, "whatsapp.net") ||
+            text.has_suffix(m.domain, "whatsapp.com") ||
+            text.has_suffix(m.domain, "instagram.com") ||
+            text.has_suffix(m.domain, "cdninstagram.com") {
+            return {"system": true}
+        }
+    }
+})
+
+
