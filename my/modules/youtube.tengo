@@ -3,7 +3,7 @@
 modules = append(modules, {
     address: func(m) {
         if m.domainaddress {
-            if text.has_suffix(m.domainaddress, "googlevideo.com:443") || m.domainaddress == "www.youtube.com:443" || m.domainaddress == "s.youtube.com:443" || m.domainaddress == "youtubei.googleapis.com:443" {
+            if (text.has_suffix(m.domainaddress, "googlevideo.com:443") && !text.has_prefix(m.domainaddress, "redirector")) || m.domainaddress == "www.youtube.com:443" || m.domainaddress == "s.youtube.com:443" || m.domainaddress == "youtubei.googleapis.com:443" {
                 if m.network == "tcp" {
                     return {"mitm": true, "mitmprotocol": "https"}
                 }
