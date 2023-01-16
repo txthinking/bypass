@@ -1,5 +1,4 @@
-//////////////////// iOS YouTube APP AD Block: Only for YouTube v17.18.4 ///////////////
-//////////////////// iOS YouTube APP 去广告: 只适用于 YouTube v17.18.4 ///////////////
+//////////////////// iOS YouTube APP AD Block ///////////////
 modules = append(modules, {
     address: func(m) {
         if m.domainaddress {

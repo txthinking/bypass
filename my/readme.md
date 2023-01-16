@@ -5,7 +5,7 @@
 使用指定的模块
 
 ```
-./buildscript.sh block_ipv6_aaaa block_secure_dns instagram
+./buildscript.sh block_ipv6_aaaa block_secure_dns instagram ...
 ```
 
 更多自行查看脚本内容
@@ -19,7 +19,7 @@ in fact, there is no module in the world, but I just think it is easier to maint
 use the specified modules
 
 ```
-./buildscript.sh block_ipv6_aaaa block_secure_dns instagram
+./buildscript.sh block_ipv6_aaaa block_secure_dns instagram ...
 ```
 
 see script content for more
