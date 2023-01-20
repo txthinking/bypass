@@ -94,56 +94,6 @@ modules = append(modules, {
 })
 
 
-//////////// 简书弹窗广告，忽略下载app，继续浏览，继续跳转提示 /////////////////////////////////
-modules = append(modules, {
-    dnsquery: func(m) {
-        if m.domain == "udiab1.jianshu.com" || m.domain == "udiab2.jianshu.com" {
-            return {block: true}
-        }
-        if m.domain == "www.jianshu.com" {
-            return {forcefakedns: true}
-        }
-    },
-    address: func(m) {
-        if m.domainaddress && m.domainaddress == "www.jianshu.com:443" {
-            if m.network == "tcp" {
-                return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
-            }
-            if m.network == "udp" {
-                return { "block": true }
-            }
-        }
-    },
-    httpresponse: func(request, response) {
-        if text.has_prefix(request["URL"], "https://www.jianshu.com/p/") && (text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android")) {
-            s := `
-                function fuck(){
-                    var a = document.querySelector('.guidance-content > div > div:last-child > div:last-child'); if(a) {a.click()} else {setTimeout(fuck, 1000)}
-                }
-                setTimeout(fuck, 1000)
-                function fuck1(){
-                    var a = document.querySelector('.close-collapse-btn'); if(a) {a.click()} else {setTimeout(fuck1, 1000)}
-                }
-                setTimeout(fuck1, 1000)
-                function fuck2(){
-                    var a = document.querySelector('.content-1VCge_0 .cancel'); if(a) {a.click()} else {setTimeout(fuck2, 1000)}
-                }
-                setTimeout(fuck2, 1000)
-            `
-            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>`+s+`</script>`, 1))
-            return response
-        }
-        if text.has_prefix(request["URL"], "https://www.jianshu.com/go-wild") {
-            if text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android") {
-                response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('body > div > div > div:last-child > a'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
-                return response
-            }
-            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('body > div > div:last-child > div'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
-            return response
-        }
-    }
-})
-
 //////////// 掘金忽略下载app，跳转外部链接继续访问 /////////////////////////////////
 modules = append(modules, {
     dnsquery: func(m) {
@@ -152,20 +102,37 @@ modules = append(modules, {
         }
     },
     address: func(m) {
-        if m.domainaddress && (m.domainaddress == "link.juejin.cn:443" || m.domainaddress == "juejin.cn:443"){
-            if m.network == "tcp" {
-                return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+        if m.domainaddress {
+            if m.domainaddress == "link.juejin.cn:443" {
+                if m.network == "tcp" {
+                    return {"mitm": true, "mitmprotocol": "https"}
+                }
+                if m.network == "udp" {
+                    return { "block": true }
+                }
             }
-            if m.network == "udp" {
-                return { "block": true }
+            if m.domainaddress == "juejin.cn:443" {
+                if m.network == "tcp" {
+                    return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+                }
+                if m.network == "udp" {
+                    return { "block": true }
+                }
+            }
+        }
+    },
+    httprequest: func(request) {
+        if text.has_prefix(request["URL"], "https://link.juejin.cn/") {
+            s := brook.parsequery(brook.parseurl(request["URL"]).rawquery)["target"]
+            if s {
+                return {
+                    "StatusCode": 301,
+                    "Location": s
+                }
             }
         }
     },
     httpresponse: func(request, response) {
-        if text.has_prefix(request["URL"], "https://link.juejin.cn/") {
-            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('.btn'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
-            return response
-        }
         if text.has_prefix(request["URL"], "https://juejin.cn/post/") && (text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android")) {
             response["Body"] = bytes(text.replace(string(response["Body"]), "</body>", `<script>function fuck(){var a = document.querySelector('.byte-drawer__wrapper .cancel-btn'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script></body>`, 1))
             return response
@@ -176,7 +143,10 @@ modules = append(modules, {
 ////////////////// 手机端的 Chrome 替换 Google搜索为 soso.ooo ///////////////
 modules = append(modules, {
     address: func(m) {
-        if (brook.os == "ios" || brook.os == "android") && m.domainaddress && m.domainaddress == "www.google.com:443" {
+        if brook.os == "darwin" || brook.os == "linux" || brook.os == "windows" || brook.iosapponmac {
+            return
+        }
+        if m.domainaddress && m.domainaddress == "www.google.com:443" {
             if m.network == "tcp" {
                 return {"mitm": true, "mitmprotocol": "https"}
             }
@@ -186,6 +156,9 @@ modules = append(modules, {
         }
     },
     httprequest: func(request) {
+        if brook.os == "darwin" || brook.os == "linux" || brook.os == "windows" || brook.iosapponmac {
+            return
+        }
         if text.has_prefix(request["URL"], "https://www.google.com/search?q=") && (text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android")) {
             return {
                 "StatusCode": 302,
@@ -198,6 +171,9 @@ modules = append(modules, {
 //////////////////// iOS YouTube APP AD Block ///////////////
 modules = append(modules, {
     address: func(m) {
+        if brook.os != "ios" || brook.iosapponmac {
+            return
+        }
         if m.domainaddress {
             if (text.has_suffix(m.domainaddress, "googlevideo.com:443") && !text.has_prefix(m.domainaddress, "redirector")) || m.domainaddress == "www.youtube.com:443" || m.domainaddress == "s.youtube.com:443" || m.domainaddress == "youtubei.googleapis.com:443" {
                 if m.network == "tcp" {
@@ -210,6 +186,9 @@ modules = append(modules, {
         }
     },
     httprequest: func(request) {
+        if brook.os != "ios" || brook.iosapponmac {
+            return
+        }
         if(text.contains(request["URL"], "googlevideo.com") && !text.contains(request["URL"], "googlevideo.com/dclk_video_ads") && !text.contains(request["URL"], "redirector") && text.contains(request["URL"], "&ctier=L") && text.contains(request["URL"], ",ctier,")){
             return {
                 "StatusCode": 302,
@@ -253,12 +232,33 @@ modules = append(modules, {
         }
     },
     address: func(m) {
-        if m.domainaddress && (m.domainaddress == "www.zhihu.com:443" || m.domainaddress == "zhuanlan.zhihu.com:443" || m.domainaddress == "link.zhihu.com:443") {
-            if m.network == "tcp" {
-                return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+        if m.domainaddress {
+            if m.domainaddress == "link.zhihu.com:443" {
+                if m.network == "tcp" {
+                    return {"mitm": true, "mitmprotocol": "https"}
+                }
+                if m.network == "udp" {
+                    return { "block": true }
+                }
             }
-            if m.network == "udp" {
-                return { "block": true }
+            if m.domainaddress == "www.zhihu.com:443" || m.domainaddress == "zhuanlan.zhihu.com:443" {
+                if m.network == "tcp" {
+                    return {ipaddressfrombypassdns: "A", bypass: true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
+                }
+                if m.network == "udp" {
+                    return { "block": true }
+                }
+            }
+        }
+    },
+    httprequest: func(request) {
+        if text.has_prefix(request["URL"], "https://link.zhihu.com/") {
+            s := brook.parsequery(brook.parseurl(request["URL"]).rawquery)["target"]
+            if s {
+                return {
+                    "StatusCode": 301,
+                    "Location": s
+                }
             }
         }
     },
@@ -266,10 +266,6 @@ modules = append(modules, {
         if text.has_prefix(request["URL"], "https://zhuanlan.zhihu.com/p/") || text.has_prefix(request["URL"], "https://www.zhihu.com/question/") {
             delete(response, "Content-Security-Policy")
             response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('button[aria-label="关闭"]'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
-            return response
-        }
-        if text.has_prefix(request["URL"], "https://link.zhihu.com/") {
-            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('.button'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
             return response
         }
     }

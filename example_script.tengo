@@ -106,8 +106,9 @@ httprequest_handler := func(request){
         }
         return response
     }
-    if text.has_prefix(request["URL"], "https://httpbin.org") {
+    if request["URL"] == "https://httpbin.org/post" && request["Method"] == "POST" && request["Content-Type"] == "application/x-www-form-urlencoded" {
         request["User-Agent"] = "curl/7.79.1"
+        request["Body"] = bytes("hello=world")
         return request
     }
     return request

@@ -1,7 +1,10 @@
 ////////////////// 手机端的 Chrome 替换 Google搜索为 soso.ooo ///////////////
 modules = append(modules, {
     address: func(m) {
-        if (brook.os == "ios" || brook.os == "android") && m.domainaddress && m.domainaddress == "www.google.com:443" {
+        if brook.os == "darwin" || brook.os == "linux" || brook.os == "windows" || brook.iosapponmac {
+            return
+        }
+        if m.domainaddress && m.domainaddress == "www.google.com:443" {
             if m.network == "tcp" {
                 return {"mitm": true, "mitmprotocol": "https"}
             }
@@ -11,6 +14,9 @@ modules = append(modules, {
         }
     },
     httprequest: func(request) {
+        if brook.os == "darwin" || brook.os == "linux" || brook.os == "windows" || brook.iosapponmac {
+            return
+        }
         if text.has_prefix(request["URL"], "https://www.google.com/search?q=") && (text.contains(request["User-Agent"], "iPhone") || text.contains(request["User-Agent"], "Android")) {
             return {
                 "StatusCode": 302,

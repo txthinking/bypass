@@ -1,6 +1,9 @@
 //////////////////// iOS YouTube APP AD Block ///////////////
 modules = append(modules, {
     address: func(m) {
+        if brook.os != "ios" || brook.iosapponmac {
+            return
+        }
         if m.domainaddress {
             if (text.has_suffix(m.domainaddress, "googlevideo.com:443") && !text.has_prefix(m.domainaddress, "redirector")) || m.domainaddress == "www.youtube.com:443" || m.domainaddress == "s.youtube.com:443" || m.domainaddress == "youtubei.googleapis.com:443" {
                 if m.network == "tcp" {
@@ -13,6 +16,9 @@ modules = append(modules, {
         }
     },
     httprequest: func(request) {
+        if brook.os != "ios" || brook.iosapponmac {
+            return
+        }
         if(text.contains(request["URL"], "googlevideo.com") && !text.contains(request["URL"], "googlevideo.com/dclk_video_ads") && !text.contains(request["URL"], "redirector") && text.contains(request["URL"], "&ctier=L") && text.contains(request["URL"], ",ctier,")){
             return {
                 "StatusCode": 302,
