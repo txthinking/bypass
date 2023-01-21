@@ -39,7 +39,7 @@ modules = append(modules, {
     httpresponse: func(request, response) {
         if text.has_prefix(request["URL"], "https://zhuanlan.zhihu.com/p/") || text.has_prefix(request["URL"], "https://www.zhihu.com/question/") {
             delete(response, "Content-Security-Policy")
-            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('button[aria-label="关闭"]'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
+            response["Body"] = bytes(text.replace(string(response["Body"]), "<head>", `<head><script>function fuck(){var a = document.querySelector('.Modal-closeButton'); if(a) {a.click()} else {setTimeout(fuck, 1000)} } setTimeout(fuck, 1000)</script>`, 1))
             return response
         }
     }
