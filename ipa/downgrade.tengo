@@ -1,0 +1,32 @@
+// Download older version ipa from iTunes server
+
+appid := "835599320" // TikTok
+versionid := "843972181" // v21.1.0
+
+text := import("text")
+f := func(){
+    if in_address {
+        if in_address.domainaddress && text.has_suffix(in_address.domainaddress, "-buy.itunes.apple.com:443") {
+            return {
+                 mitm:true,
+                 mitmprotocol: "https",
+                 mitmwithbody: true,
+                 mitmautohandlecompress: true
+            }
+        }
+        return
+    }
+    if in_httprequest && !in_httpresponse {
+        if in_httprequest["Method"] == "POST" && text.contains(in_httprequest["URL"], "/WebObjects/MZBuy.woa/wa/buyProduct") {
+            s := string(in_httprequest["Body"])
+            if text.contains(s, "<string>"+appid+"</string>") {
+                in_httprequest["Body"] = bytes(text.re_replace(`<key>appExtVrsId</key>\s*<string>\d+</string>`, s, "<key>appExtVrsId</key>\n<string>"+versionid+"</string>"))
+            }
+        }
+        return in_httprequest
+    }
+    if in_httprequest && in_httpresponse {
+        return in_httpresponse
+    }
+}
+out := f()
