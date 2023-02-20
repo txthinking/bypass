@@ -1,0 +1,47 @@
+//////////////// Bing ChatGPT /////////////////////////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.domain == "cn.bing.com" || m.domain == "www.bing.com" {
+            return {forcefakedns: true}
+        }
+    },
+    address: func(m) {
+        if m.network == "tcp" && m.domainaddress {
+            if m.domainaddress == "cn.bing.com:443" || m.domainaddress == "www.bing.com:443" {
+                return {"mitm": true, "mitmprotocol": "https"}
+            }
+            return
+        }
+        if m.network == "udp" && m.domainaddress {
+            if m.domainaddress == "cn.bing.com:443" || m.domainaddress == "www.bing.com:443" {
+                return { "block": true }
+            }
+            return
+        }
+    },
+    httprequest: func(request) {
+        if text.has_prefix(request["URL"], "https://cn.bing.com/") {
+            return {
+                "StatusCode": 301,
+                "Location": "https://www.bing.com/"
+            }
+        }
+        if text.has_prefix(request["URL"], "https://www.bing.com/") {
+            request["X-Forwarded-For"] = "172.253.118.139"
+            if brook.iosapponmac || brook.os == "darwin" || brook.os == "linux" || brook.os == "windows" {
+                request["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.46"
+                request["Sec-Ch-Ua"] = `Chromium";v="110", "Not A(Brand";v="24", "Microsoft Edge";v="110"`
+                request["Sec-Ch-Ua-Mobile"] = "?0"
+                request["Sec-Ch-Ua-Platform"] = "Windows"
+            }
+            if brook.os == "ios" && !brook.iosapponmac {
+                request["User-Agent"] = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/110.0.0.0"
+            }
+            if brook.os == "android" {
+                request["User-Agent"] = "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36 Edg/110.0.0.0"
+            }
+        }
+    }
+})
+
+
