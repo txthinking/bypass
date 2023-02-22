@@ -1,17 +1,6 @@
 // The script I use myself (M1 Mac/iOS, for other systems, fork, modify by yourself)
 //
 // 自用脚本 (M1 Mac/iOS, 其他系统可fork后自行修改适配)
-//
-// 搭配 GUI 的配置使用:
-//
-// System DNS: 8.8.8.8 2001:4860:4860::8888
-// Fake DNS: 开启
-// Block: 开启
-// Block Domain: https://txthinking.github.io/bypass/example_block.txt
-// Bypass: 开启
-// Bypass IP: https://txthinking.github.io/bypass/china_cidr4.txt https://txthinking.github.io/bypass/china_cidr6.txt ZZ,CN
-// Bypass Domain: https://txthinking.github.io/bypass/china_domain.txt
-// Bypass DNS: https://dns.alidns.com/dns-query?address=223.5.5.5:443 https://dns.alidns.com/dns-query?address=%5B2400%3A3200%3A%3A1%5D%3A443
 
 text := import("text")
 brook := import("brook")
