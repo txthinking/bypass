@@ -33,7 +33,7 @@ dnsquery_handler := func(m){
             return {"block": true}
         }
     }
-    if m.type == "AAAA" {
+    if m.domain == "dns.google" || m.type == "AAAA" {
         return {"block": true}
     }
     if text.has_suffix(m.domain, "facebook.com") ||
