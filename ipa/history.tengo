@@ -1,0 +1,32 @@
+// Get history version id list
+// When you download a app, there will have a request like
+// POST https://p52-buy.itunes.apple.com/WebObjects/MZBuy.woa/wa/buyProduct
+// The history version id list is in response body.
+// 
+// In my case, some experience to share with you:
+// When I download a app, there is query in the URL, and the body has no history id list,
+// I restart iTunes, and download a app again(delete first), there is no query in the URL, and the body has history id list.
+//
+// https://www.txthinking.com/talks/articles/ios-old-version-app-en.article
+
+text := import("text")
+f := func(){
+    if in_address {
+        if in_address.domainaddress && text.has_suffix(in_address.domainaddress, "-buy.itunes.apple.com:443") {
+            return {
+                 mitm:true,
+                 mitmprotocol: "https",
+                 mitmwithbody: true,
+                 mitmautohandlecompress: true
+            }
+        }
+        return
+    }
+    if in_httprequest && !in_httpresponse {
+        return in_httprequest
+    }
+    if in_httprequest && in_httpresponse {
+        return in_httpresponse
+    }
+}
+out := f()
