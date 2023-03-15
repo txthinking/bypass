@@ -14,6 +14,13 @@ modules = append(modules, {
             text.has_suffix(m.domain, "whatsapp.net") ||
             text.has_suffix(m.domain, "whatsapp.com") ||
             text.has_suffix(m.domain, "instagram.com") ||
+            text.has_suffix(m.domain, "akamai.net") ||
+            text.has_suffix(m.domain, "apple.com") ||
+            text.has_suffix(m.domain, "aaplimg.com") ||
+            text.has_suffix(m.domain, "alibabadns.com") ||
+            text.has_suffix(m.domain, "akamaiedge.net") ||
+            text.has_suffix(m.domain, "apple-dns.net") ||
+            text.has_suffix(m.domain, "akadns.net") ||
             text.has_suffix(m.domain, "cdninstagram.com") {
             return {"system": true}
         }
