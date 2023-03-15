@@ -9,6 +9,35 @@ brook := import("brook")
 ///////////////////// Modules ////////////////////////
 modules := []
 
+//////////////////// Block IPv6 AAAA query /////////////////////////
+// It is recommended to place it before other modules
+// 建议放在其他模块之前
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.type == "AAAA" {
+            return {"block": true}
+        }
+    }
+})
+
+///////////////////// Block google secure DNS on system or browser ///////////////
+modules = append(modules, {
+    dnsquery: func(m) {
+        if m.domain == "dns.google" {
+            return { "block": true }
+        }
+    },
+    address: func(m) {
+        if m.ipaddress && (m.ipaddress == "8.8.8.8:853" || m.ipaddress == "8.8.8.8:443" || m.ipaddress == "8.8.4.4:853" || m.ipaddress == "8.8.4.4:443" || m.ipaddress == "[2001:4860:4860::8888]:853" || m.ipaddress == "[2001:4860:4860::8888]:443" || m.ipaddress == "[2001:4860:4860::8844]:853" || m.ipaddress == "[2001:4860:4860::8844]:443") {
+            return { "block": true }
+        }
+        if m.domainaddress && m.domainaddress == "dns.google:443" {
+            return { "block": true }
+        }
+    }
+})
+
+
 //////////////// 移除 91 广告 /////////////////////////////////
 modules = append(modules, {
     address: func(m) {
@@ -35,48 +64,6 @@ modules = append(modules, {
         }
     }
 })
-
-///////////////////// Block google secure DNS on system or browser ///////////////
-modules = append(modules, {
-    address: func(m) {
-        if m.ipaddress && (m.ipaddress == "8.8.8.8:853" || m.ipaddress == "8.8.8.8:443" || m.ipaddress == "8.8.4.4:853" || m.ipaddress == "8.8.4.4:443" || m.ipaddress == "[2001:4860:4860::8888]:853" || m.ipaddress == "[2001:4860:4860::8888]:443" || m.ipaddress == "[2001:4860:4860::8844]:853" || m.ipaddress == "[2001:4860:4860::8844]:443") {
-            return { "block": true }
-        }
-        if m.domainaddress && m.domainaddress == "dns.google:443" {
-            return { "block": true }
-        }
-    }
-})
-
-
-//////////////// Bing ChatGPT /////////////////////////////////
-modules = append(modules, {
-    dnsquery: func(m) {
-        if m.domain == "cn.bing.com" || m.domain == "www.bing.com" {
-            return {forcefakedns: true}
-        }
-    },
-    address: func(m) {
-        if m.network == "tcp" && m.domainaddress && (m.domainaddress == "cn.bing.com:443" || m.domainaddress == "www.bing.com:443") {
-            return {"mitm": true, "mitmprotocol": "https"}
-        }
-        if m.network == "udp" && m.domainaddress && (m.domainaddress == "cn.bing.com:443" || m.domainaddress == "www.bing.com:443") {
-            return { "block": true }
-        }
-    },
-    httprequest: func(request) {
-        if text.has_prefix(request["URL"], "https://cn.bing.com/") {
-            return {
-                "StatusCode": 301,
-                "Location": "https://www.bing.com/"
-            }
-        }
-        if text.has_prefix(request["URL"], "https://www.bing.com/") {
-            request["User-Agent"] += "EdgA/110.0.1587.41"
-        }
-    }
-})
-
 
 //////////////////// Instagram itself has a non-standard dns cache, so we don't use fakedns for it /////////////////////////
 modules = append(modules, {
