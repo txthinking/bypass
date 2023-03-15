@@ -1,4 +1,8 @@
-// Download older version ipa from iTunes server
+// Download older version app from iTunes server
+// 
+// Replace the values of appid and versionid to yours.
+// 
+// https://www.txthinking.com/talks/articles/ios-old-version-app-en.article
 
 appid := "835599320" // TikTok
 versionid := "843972181" // v21.1.0
