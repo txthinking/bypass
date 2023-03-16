@@ -4,8 +4,8 @@
 // 
 // https://www.txthinking.com/talks/articles/ios-old-version-app-en.article
 
-appid := "835599320" // TikTok
-versionid := "843972181" // v21.1.0
+appid := "544007664" // YouTube
+versionid := "848374799" // v17.15.1
 
 text := import("text")
 f := func(){
