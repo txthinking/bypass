@@ -1,4 +1,4 @@
-//////////////////// iOS YouTube APP AD Block ///////////////
+//////////////////// iOS YouTube APP AD Block. Tested with YouTube v17.15.1 ///////////////
 modules = append(modules, {
     address: func(m) {
         if brook.os != "ios" || brook.iosapponmac {
