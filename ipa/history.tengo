@@ -1,4 +1,6 @@
 // Get history version id list
+//
+// https://www.txthinking.com/talks/articles/ios-old-version-app.article
 // https://www.txthinking.com/talks/articles/ios-old-version-app-en.article
 
 text := import("text")
