@@ -2,6 +2,7 @@
 // 
 // Replace the values of appid and versionid to yours.
 // 
+// https://www.txthinking.com/talks/articles/ios-old-version-app.article
 // https://www.txthinking.com/talks/articles/ios-old-version-app-en.article
 
 appid := "544007664" // YouTube
