@@ -3,19 +3,16 @@ brook := import("brook")
 json := import("json")
 
 guiconfig_handler := func(){
-    if brook.os == "ios" || brook.os == "android" {
-        return
-    }
-    return {
-        "systemdns4": "8.8.8.8",
-        "systemdns6": "2001:4860:4860::8888",
-        "fakedns": true,
-        "block": true,
-        "bypass": false,
-        "bypassdns4": "https://dns.alidns.com/dns-query?address=223.5.5.5%3A443",
-        "bypassdns6": "https://dns.alidns.com/dns-query?address=%5B2400%3A3200%3A%3A1%5D%3A443",
-        "hosts": true
-    }
+//    return {
+//        "systemdns4": "8.8.8.8",
+//        "systemdns6": "2001:4860:4860::8888",
+//        "fakedns": true,
+//        "block": true,
+//        "bypass": false,
+//        "bypassdns4": "https://dns.alidns.com/dns-query?address=223.5.5.5%3A443",
+//        "bypassdns6": "https://dns.alidns.com/dns-query?address=%5B2400%3A3200%3A%3A1%5D%3A443",
+//        "hosts": true
+//    }
 }
 
 dnsquery_handler := func(m){
