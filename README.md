@@ -1,10 +1,20 @@
-## 中国，不一定全。域名列表太多，没必要，建议维护自己的规则。域名都是后缀匹配模式
+## 中国
+
+域名列表太多，没必要，建议维护自己的规则。域名都是后缀匹配模式
 
 [https://raw.githubusercontent.com/txthinking/bypass/master/chinadomain.txt](https://txthinking.github.io/bypass/china_domain.txt)
 
-[https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr4.txt](https://txthinking.github.io/bypass/china_cidr4.txt)
+v4内网
 
-[https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr6.txt](https://txthinking.github.io/bypass/china_cidr6.txt)
+https://raw.githubusercontent.com/txthinking/bypass/master/private_cidr4.txt
+
+17mon的
+
+https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt
+
+v6很少
+
+https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr6.txt](https://txthinking.github.io/bypass/china_cidr6.txt)
 
 ## Apple
 
