@@ -14,7 +14,7 @@ https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt
 
 v6很少
 
-https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr6.txt](https://txthinking.github.io/bypass/china_cidr6.txt)
+https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr6.txt
 
 ## Apple
 
