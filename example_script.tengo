@@ -43,6 +43,29 @@ dnsquery_handler := func(m){
         text.has_suffix(m.domain, "cdninstagram.com") {
         return {"system": true}
     }
+    // apple push
+    if text.has_suffix(m.domain, "apple.com") ||
+        text.has_suffix(m.domain, "icloud.com") ||
+        text.has_suffix(m.domain, "cdn-apple.com") ||
+        text.has_suffix(m.domain, "mzstatic.com") ||
+        text.has_suffix(m.domain, "entrust.net") ||
+        text.has_suffix(m.domain, "digicert.com") ||
+        text.has_suffix(m.domain, "verisign.net") ||
+        text.has_suffix(m.domain, "apple") ||
+        text.has_suffix(m.domain, "itunes-apple.com.akadns.net") ||
+        text.has_suffix(m.domain, "cdn-apple.com.akadns.net") ||
+        text.has_suffix(m.domain, "ks-cdn.com") ||
+        text.has_suffix(m.domain, "ksyuncdn.com") ||
+        text.has_suffix(m.domain, "cdn-apple.com.edgekey.net") ||
+        text.has_suffix(m.domain, "e2885.e9.akamaiedge.net") ||
+        text.has_suffix(m.domain, "apple.com.edgekey.net") ||
+        text.has_suffix(m.domain, "e2490.dscb.akamaiedge.net") ||
+        text.has_suffix(m.domain, "idms-apple.com.akadns.net") ||
+        text.has_suffix(m.domain, "apple.com.edgekey.net.globalredir.akadns.net") ||
+        text.has_suffix(m.domain, "e6858.dscx.akamaiedge.net") ||
+        text.has_suffix(m.domain, "ioshost.qtlcdn.com") {
+        return {"bypass": true}
+    }
 }
 
 address_handler := func(m) {
@@ -63,6 +86,17 @@ address_handler := func(m) {
         s := brook.country(r.host)
         if s == "ZZ" || s == "CN" {
             return { "bypass": true }
+        }
+        // apple push
+        if brook.cidrcontainsip("17.0.0.0/8", r.host) ||
+            brook.cidrcontainsip("103.81.148.0/22", r.host) ||
+            brook.cidrcontainsip("103.81.148.0/24", r.host) ||
+            brook.cidrcontainsip("2620:149:a44::/48", r.host) ||
+            brook.cidrcontainsip("2403:300:a42::/48", r.host) ||
+            brook.cidrcontainsip("2403:300:a51::/48", r.host) ||
+            brook.cidrcontainsip("2a01:b740:a42::/48", r.host) ||
+            brook.cidrcontainsip("103.81.149.0/24", r.host) {
+            return {"bypass": true}
         }
         return
     }
