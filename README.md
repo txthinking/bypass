@@ -15,7 +15,7 @@
 
 ~~https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr6.txt~~
 
-Brook 全平台客户端都已支持绕过 Geo IP，直接选择 CN，ZZ 更方便。 
+**Brook 全平台客户端都已支持绕过 Geo IP，直接选择 CN，ZZ 更方便。 **
 
 ## Apple
 
