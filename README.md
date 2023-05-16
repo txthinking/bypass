@@ -4,17 +4,18 @@
 
 [https://raw.githubusercontent.com/txthinking/bypass/master/chinadomain.txt](https://txthinking.github.io/bypass/china_domain.txt)
 
-v4内网
+~~v4内网~~<br/>
+~~https://raw.githubusercontent.com/txthinking/bypass/master/private_cidr4.txt~~
 
-https://raw.githubusercontent.com/txthinking/bypass/master/private_cidr4.txt
+~~17mon的~~<br/>
 
-17mon的
+~~https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt~~
 
-https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt
+~~v6很少~~<br/>
 
-v6很少
+~~https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr6.txt~~
 
-https://raw.githubusercontent.com/txthinking/bypass/master/china_cidr6.txt
+Brook 全平台客户端都已支持绕过 Geo IP，直接选择 CN，ZZ 更方便。 
 
 ## Apple
 
