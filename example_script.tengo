@@ -36,7 +36,6 @@ dnsquery_handler := func(m){
         "whatsapp.com",
         "instagram.com",
         "akamai.net",
-        "apple.com",
         "aaplimg.com",
         "alibabadns.com",
         "akamaiedge.net",
