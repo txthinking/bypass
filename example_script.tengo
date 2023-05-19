@@ -115,7 +115,6 @@ address_handler := func(m) {
                 return {"bypass": true}
             }
         }
-        return
     }
     if m.domainaddress {
         // block secure dns
@@ -130,9 +129,11 @@ address_handler := func(m) {
             if m.domainaddress == "httpbin.org:443" {
                 return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
             }
+            // connect this ip and bypass it
             if m.domainaddress == "myapi2.local:80" {
                 return {"ipaddress": "10.211.1.76:8080", "bypass": true, "mitm": true, "mitmprotocol": "http", "mitmwithbody": true, "mitmautohandlecompress": true}
             }
+            // get A via bypass dns, then connect it and bypass it
             if m.domainaddress == "myip.ipip.net:443" {
                 return {"ipaddressfrombypassdns": "A", "bypass": true, "mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
             }
