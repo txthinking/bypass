@@ -104,27 +104,32 @@ modules = append(modules, {
 //////////////////// Instagram itself has a non-standard dns cache, so we don't use fakedns for it /////////////////////////
 modules = append(modules, {
     dnsquery: func(m) {
-        if text.has_suffix(m.domain, "facebook.com") ||
-            text.has_suffix(m.domain, "fbcdn.net") ||
-            text.has_suffix(m.domain, "facebook.net") ||
-            text.has_suffix(m.domain, "akamaihd.net") ||
-            text.has_suffix(m.domain, "thefacebook.com") ||
-            text.has_suffix(m.domain, "tfbnw.net") ||
-            text.has_suffix(m.domain, "messenger.com") ||
-            text.has_suffix(m.domain, "fb.me") ||
-            text.has_suffix(m.domain, "fbsbx.com") ||
-            text.has_suffix(m.domain, "fb.com") ||
-            text.has_suffix(m.domain, "whatsapp.net") ||
-            text.has_suffix(m.domain, "whatsapp.com") ||
-            text.has_suffix(m.domain, "instagram.com") ||
-            text.has_suffix(m.domain, "akamai.net") ||
-            text.has_suffix(m.domain, "aaplimg.com") ||
-            text.has_suffix(m.domain, "alibabadns.com") ||
-            text.has_suffix(m.domain, "akamaiedge.net") ||
-            text.has_suffix(m.domain, "apple-dns.net") ||
-            text.has_suffix(m.domain, "akadns.net") ||
-            text.has_suffix(m.domain, "cdninstagram.com") {
-            return {"system": true}
+        l := [
+            "facebook.com",
+            "fbcdn.net",
+            "facebook.net",
+            "akamaihd.net",
+            "thefacebook.com",
+            "tfbnw.net",
+            "messenger.com",
+            "fb.me",
+            "fbsbx.com",
+            "fb.com",
+            "whatsapp.net",
+            "whatsapp.com",
+            "instagram.com",
+            "akamai.net",
+            "aaplimg.com",
+            "alibabadns.com",
+            "akamaiedge.net",
+            "apple-dns.net",
+            "akadns.net",
+            "cdninstagram.com"
+        ]
+        for v in l {
+            if text.has_suffix(m.domain, v) {
+                return {"system": true}
+            }
         }
     }
 })
