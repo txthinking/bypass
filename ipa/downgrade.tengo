@@ -1,4 +1,5 @@
 // Download older version app from iTunes server
+// 使用 Brook 下载任意 iOS App 的旧版本
 //
 // Replace the values of appid and versionid to yours.
 //
