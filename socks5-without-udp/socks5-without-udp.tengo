@@ -1,6 +1,8 @@
 // if your socks5 server don't support UDP. This script can alleviate. But recommend deploy socks5 server via $ brook socks5, it support both TCP and UDP.
 // 如果你的 socks5 server 不支持 UDP. 这个脚本可以缓解。但推荐使用 $ brook socks5 部署 socks5 server, 支持 TCP 和 UDP。
 
+text := import("text")
+
 f := func(){
     if in_dnsquery {
         // block secure dns
