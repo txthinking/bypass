@@ -28,6 +28,10 @@ f := func(){
             }
         }
         if m.domainaddress {
+            // block secure dns
+            if text.has_prefix(m.domainaddress, "dns.google:") {
+                return { "block": true }
+            }
             // block udp
             if m.network == "udp" {
                 return { block: true }
