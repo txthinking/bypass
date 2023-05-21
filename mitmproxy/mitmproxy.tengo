@@ -4,6 +4,8 @@
 // Brook 和 mitmproxy 进行深度手机抓包
 // https://www.txthinking.com/talks/articles/brook-mitmproxy.article
 
+text := import("text")
+
 f := func(){
     if in_dnsquery {
         // block secure dns
