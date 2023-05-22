@@ -12,10 +12,6 @@ f := func(){
         if in_dnsquery.domain == "dns.google" {
             return {block: true}
         }
-        // block ipv6, if your server or local does not support ipv6
-        if in_dnsquery.type == "AAAA" {
-            return {block: true}
-        }
     }
     if in_address {
         m := in_address
@@ -39,7 +35,7 @@ f := func(){
                 return {"mitm": true, "mitmprotocol": "http", "mitmwithbody": true, "mitmautohandlecompress": true}
             }
             // Packet Capture all tcp 443, most https http/1.1 and http/2 use it
-            if m.network == "tcp" && text.has_suffix(m.domainaddress, ":80"){
+            if m.network == "tcp" && text.has_suffix(m.domainaddress, ":443"){
                 return {"mitm": true, "mitmprotocol": "https", "mitmwithbody": true, "mitmautohandlecompress": true}
             }
             // block udp on port 443, most http/3 use it
