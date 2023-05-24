@@ -14,22 +14,22 @@
         "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/block_aaaa.tengo"
     },
     {
-        "description_en": "Remove 91porn AD",
-        "description_zh": "移除 91porn 广告",
+        "description_en": "CA needs to be installed. Remove 91porn AD",
+        "description_zh": "需要安装 CA。移除 91porn 广告",
         "link_en": "",
         "link_zh": "",
         "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/91porn.tengo"
     },
     {
-        "description_en": "Remove iOS YouTube AD",
-        "description_zh": "移除 iOS YouTube 广告",
+        "description_en": "CA needs to be installed. Remove iOS YouTube AD",
+        "description_zh": "需要安装 CA。移除 iOS YouTube 广告",
         "link_en": "https://www.txthinking.com/talks/articles/block-youtube-app-ad-en.article",
         "link_zh": "https://www.txthinking.com/talks/articles/block-youtube-app-ad.article",
         "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/block_youtube_ad.tengo"
     },
     {
-        "description_en": "google.cn 301 google.com",
-        "description_zh": "google.cn 301 google.com",
+        "description_en": "CA needs to be installed. google.cn 301 google.com",
+        "description_zh": "需要安装 CA。google.cn 301 google.com",
         "link_en": "",
         "link_zh": "",
         "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/google_cn.tengo"
@@ -42,22 +42,22 @@
         "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/instagram.tengo"
     },
     {
-        "description_en": "Optimize juejin",
-        "description_zh": "掘金忽略下载app，跳转外部链接继续访问",
+        "description_en": "CA needs to be installed. Optimize juejin",
+        "description_zh": "需要安装 CA。掘金忽略下载app，跳转外部链接继续访问",
         "link_en": "",
         "link_zh": "",
         "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/juejin.tengo"
     },
     {
-        "description_en": "Replace google search to soso.ooo on chrome mobile",
-        "description_zh": "手机端的 Chrome 替换 Google搜索为 soso.ooo",
+        "description_en": "CA needs to be installed. Replace google search to soso.ooo on chrome mobile",
+        "description_zh": "需要安装 CA。手机端的 Chrome 替换 Google搜索为 soso.ooo",
         "link_en": "",
         "link_zh": "",
-        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/juejin.tengo"
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/soso.tengo"
     },
     {
-        "description_en": "Optimize zhihu",
-        "description_zh": "知乎登录弹窗，跳转外部链接",
+        "description_en": "CA needs to be installed. Optimize zhihu",
+        "description_zh": "需要安装 CA。知乎登录弹窗，跳转外部链接",
         "link_en": "",
         "link_zh": "",
         "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/zhihu.tengo"
