@@ -1,0 +1,65 @@
+[
+    {
+        "description_en": "Block google secure DNS, prevent Brook's Fake DNS from not working",
+        "description_zh": "阻断 Google 安全 DNS, 避免 Brook 的 虚拟 DNS 不生效",
+        "link_en": "https://www.txthinking.com/talks/articles/brook-fakedns-en.article",
+        "link_zh": "https://www.txthinking.com/talks/articles/brook-fakedns.article",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/block_google_secure_dns.tengo"
+    },
+    {
+        "description_en": "Block AAAA, if your local or server does not support IPv6",
+        "description_zh": "阻断 AAAA, 如果你的本地或服务器不支持 IPv6",
+        "link_en": "https://www.txthinking.com/talks/articles/brook-ipv6-en.article",
+        "link_zh": "https://www.txthinking.com/talks/articles/brook-ipv6.article",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/block_aaaa.tengo"
+    },
+    {
+        "description_en": "Remove 91porn AD",
+        "description_zh": "移除 91porn 广告",
+        "link_en": "",
+        "link_zh": "",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/91porn.tengo"
+    },
+    {
+        "description_en": "Remove iOS YouTube AD",
+        "description_zh": "移除 iOS YouTube 广告",
+        "link_en": "https://www.txthinking.com/talks/articles/block-youtube-app-ad-en.article",
+        "link_zh": "https://www.txthinking.com/talks/articles/block-youtube-app-ad.article",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/block_youtube_ad.tengo"
+    },
+    {
+        "description_en": "google.cn 301 google.com",
+        "description_zh": "google.cn 301 google.com",
+        "link_en": "",
+        "link_zh": "",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/google_cn.tengo"
+    },
+    {
+        "description_en": "Instagram has a non-standard dns cache, so we don't use fakedns for it. The domain name may be incomplete, welcome to PR",
+        "description_zh": "Instagram 的 DNS 缓存不标准，所以不让他走绕过 DNS。域名可能不全，欢迎PR",
+        "link_en": "",
+        "link_zh": "",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/instagram.tengo"
+    },
+    {
+        "description_en": "Optimize juejin",
+        "description_zh": "掘金忽略下载app，跳转外部链接继续访问",
+        "link_en": "",
+        "link_zh": "",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/juejin.tengo"
+    },
+    {
+        "description_en": "Replace google search to soso.ooo on chrome mobile",
+        "description_zh": "手机端的 Chrome 替换 Google搜索为 soso.ooo",
+        "link_en": "",
+        "link_zh": "",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/juejin.tengo"
+    },
+    {
+        "description_en": "Optimize zhihu",
+        "description_zh": "知乎登录弹窗，跳转外部链接",
+        "link_en": "",
+        "link_zh": "",
+        "url": "https://raw.githubusercontent.com/txthinking/bypass/master/modules/zhihu.tengo"
+    }
+]

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html data-theme="light">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHQLT0NYGD"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-FHQLT0NYGD");
+        </script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.3/css/pico.min.css" />
+        <script src="https://unpkg.com/vue@3.2.29/dist/vue.global.prod.js"></script>
+        <script src="https://www.recaptcha.net/recaptcha/api.js?render=6LdEz-MkAAAAAPkl99q8ZFGosGIi-dqKA2zbyCxn"></script>
+        <title>Brook Script Builder</title>
+        <style>
+            [data-theme="light"],
+            :root:not([data-theme="dark"]) {
+                --primary: #000000;
+                --primary-inverse: #ffffff;
+            }
+            @media (min-width: 992px) {
+                .dm {
+                    display: flex;
+                    justify-content: center;
+                }
+                .dm > article {
+                    width: 500px;
+                }
+            }
+        </style>
+        <script>
+            window.addEventListener("DOMContentLoaded", async (e) => {
+                var app = {
+                    data() {
+                        return {
+                            modules: [],
+                            url: "",
+                            ing: false,
+                            zh: !navigator.language.toLowerCase().startsWith("zh-"),
+                        };
+                    },
+                    async mounted() {
+                        try{
+                            var res = await fetch("https://raw.githubusercontent.com/txthinking/bypass/master/modules/modules.json");
+                            if(res.status != 200){
+                                throw res.statusText;
+                            }
+                            var s = await res.text();
+                            this.modules = JSON.parse(s).map(v=>{
+                                v.switch = false;
+                                return v;
+                            });
+                        }catch(e){
+                            alert(`${e}`);
+                        }
+                    },
+                    methods: {
+                        async generate() {
+                            var header = `modules := []`;
+                            var footer = `
+f := func() {
+    if in_dnsquery {
+        for i:=0; i<len(modules); i++{
+            if modules[i]["dnsquery"] {
+                r := modules[i]["dnsquery"](in_dnsquery)
+                if is_error(r) || is_map(r) {
+                    return r
+                }
+            }
+        }
+        return
+    }
+    if in_address {
+        for i:=0; i<len(modules); i++{
+            if modules[i]["address"] {
+                r := modules[i]["address"](in_address)
+                if is_error(r) || is_map(r) {
+                    return r
+                }
+            }
+        }
+        return
+    }
+    if in_httprequest && !in_httpresponse {
+        for i:=0; i<len(modules); i++{
+            if modules[i]["httprequest"] {
+                r := modules[i]["httprequest"](in_httprequest)
+                if is_error(r) || is_map(r) {
+                    return r
+                }
+            }
+        }
+        return in_httprequest
+    }
+    if in_httprequest && in_httpresponse {
+        delete(in_httpresponse, "Alt-Svc") // Avoid upgrading to http3 from http1 or http2
+        for i:=0; i<len(modules); i++{
+            if modules[i]["httpresponse"] {
+                r :=  modules[i]["httpresponse"](in_httprequest, in_httpresponse)
+                if is_error(r) || is_map(r) {
+                    return r
+                }
+            }
+        }
+        return in_httpresponse
+    }
+}
+out := f()
+`;
+                            if (this.ing) {
+                                return;
+                            }
+                            this.ing = true;
+                            var s = header + "\n";
+                            try{
+                                for(var i=0;i<this.modules;i++){
+                                    if(this.modules[i].switch){
+                                        var res = await fetch(this.modules[i].url);
+                                        if(res.status != 200){
+                                            throw res.statusText;
+                                        }
+                                        s += (await res.text()) + "\n";
+                                    }
+                                }
+                            }catch(e){
+                                alert(e.toString());
+                                this.ing = false;
+                                return;
+                            }
+                            s += footer + "\n";
+
+                            var self = this;
+                            grecaptcha.ready(async function () {
+                                try {
+                                    self.url = "";
+                                    var token = await grecaptcha.execute("6LdEz-MkAAAAAPkl99q8ZFGosGIi-dqKA2zbyCxn", { action: "submit" });
+                                    var r = await fetch("https://paste.brook.app/set?recaptcha_token=" + encodeURIComponent(token), {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify({
+                                            Content: s,
+                                            Times: 1000,
+                                            ExpiredAt: 86400,
+                                        }),
+                                    });
+                                    if (r.status != 200) {
+                                        throw await r.text();
+                                    }
+                                    self.url = "https://paste.brook.app/get?id=" + (await r.text());
+                                } catch (e) {
+                                    alert(e.toString());
+                                }
+                                self.ing = false;
+                            });
+                        },
+                    },
+                };
+                Vue.createApp(app).mount("body");
+            });
+        </script>
+    </head>
+    <body style="margin: 0">
+        <nav class="container-fluid" style="background-color: #000000">
+            <ul>
+                <li>
+                    <a href="https://www.txthinking.com"><strong style="color: #ffffff">{{ zh ? 'Brook 脚本生成器' : 'Brook Script Builder' }}</strong></a>
+                </li>
+            </ul>
+            <ul>
+                <li><a target="_blank" style="color: #ffffff" href="https://www.txthinking.com/talks/">Talks</a></li>
+                <li><a target="_blank" style="color: #ffffff" href="https://www.youtube.com/txthinking">YouTube</a></li>
+                <li><a target="_blank" style="color: #ffffff" href="https://t.me/s/txthinking_news">{{ zh ? "公告" : 'News'}}</a></li>
+                <li><a target="_blank" style="color: #ffffff" href="https://t.me/brookgroup">Telegram</a></li>
+            </ul>
+        </nav>
+        <main class="container">
+            <h5 v-if="zh">有些功能是无法抽象为模块或者不方便公开分享，所以更强大和灵活的请编写独立脚本。<a href="https://brook.app">文档</a> 和 <a href="https://github.com/txthinking/bypass">示例</a>。</h5>
+            <h5 v-if="!zh">Some functions cannot be abstracted into modules or are not convenient for public sharing, so please write independent scripts for more powerful and flexible functions. <a href="https://brook.app">Documentation</a> and <a href="https://github.com/txthinking/bypass">Examples</a>.</h5>
+            <h2 v-if="zh">选择你要开启的模块</h2>
+            <h2 v-if="!zh">Select the module you want to activate</h2>
+            <div style="padding-bottom:30px;" v-for="(v, i) in modules">
+                <label>
+                    <input type="checkbox" @click="this.modules[i].switch = !this.modules[i].switch">
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <a :href="v.url">{{ zh ? "源码": "Source" }}</a>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <span v-if="!zh && !v.link_en">{{v.description_en}}</span>
+                    <span v-if="!zh && v.link_en"><a :href="v.link_en" target="_blank">{{v.description_en}}</a></span>
+                    <span v-if="zh && !v.link_zh">{{v.description_zh}}</span>
+                    <span v-if="zh && v.link_zh"><a :href="v.link_zh" target="_blank">{{v.description_zh}}</a></span>
+                </label>
+            </div>
+            <div style="height:30px;"></div>
+            <button @click="generate" :aria-busy="ing ? 'true' : ''">{{zh ? "生成" : "Generate"}}</button>
+            <input v-if="url" onclick="this.select();" v-model="url" />
+        </main>
+        <footer class="container" style="font-size: 14px">
+            <center>
+                <p style="font-size: 14px"><a style="font-size: 14px" href="https://github.com/txthinking/bypass">{{ zh ? '本站在 GitHub 开源' : 'This site is open source on GitHub' }}</a></p>
+            </center>
+        </footer>
+    </body>
+</html>
