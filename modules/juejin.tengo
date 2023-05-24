@@ -1,6 +1,7 @@
 // 掘金忽略下载app，跳转外部链接继续访问
 modules = append(modules, {
     dnsquery: func(m) {
+        brook := import("brook")
         if m.domain == "link.juejin.cn" || (m.domain == "juejin.cn" && (brook.os=="ios" || brook.os=="android")) {
             return {forcefakedns: true}
         }
