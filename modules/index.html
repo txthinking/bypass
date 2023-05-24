@@ -42,7 +42,7 @@
                             modules: [],
                             url: "",
                             ing: false,
-                            zh: !navigator.language.toLowerCase().startsWith("zh-"),
+                            zh: navigator.language.toLowerCase().startsWith("zh-"),
                         };
                     },
                     async mounted() {
@@ -119,7 +119,8 @@ out := f()
                             this.ing = true;
                             var s = header + "\n";
                             try{
-                                for(var i=0;i<this.modules;i++){
+                                for(var i=0;i<this.modules.length;i++){
+                                    console.log(this.modules[i].switch);
                                     if(this.modules[i].switch){
                                         var res = await fetch(this.modules[i].url);
                                         if(res.status != 200){

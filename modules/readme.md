@@ -1,6 +1,6 @@
 此目录下是将一些可分享给他人的功能脚本抽象为独立的模块。有些功能是无法抽象为模块或者不方便公开分享，所以更强大和灵活的请编写独立脚本。[文档](https://brook.app) 和 [示例](https://github.com/txthinking/bypass)。
 
-> Under this directory, some functional scripts that can be shared with others are abstracted into independent modules. Some functions cannot be abstracted into modules or are not convenient for public sharing, so please write independent scripts for more powerful and flexible functions. [documentation](https://brook.app) and [example](https://github.com/txthinking/bypass).
+> Under this directory, some functional scripts that can be shared with others are abstracted into modules. Some functions cannot be abstracted into modules or are not convenient for public sharing, so please write standalone scripts for more powerful and flexible functions. [documentation](https://brook.app) and [example](https://github.com/txthinking/bypass).
 
 ## Brook 脚本生成器 | Brook Script Builder
 
