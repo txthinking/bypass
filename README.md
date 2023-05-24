@@ -1,7 +1,5 @@
 ## 中国大陆分流
 
-[https://raw.githubusercontent.com/txthinking/bypass/master/chinadomain.txt](https://txthinking.github.io/bypass/china_domain.txt)
-
 [查看文章](https://www.txthinking.com/talks/articles/brook-china.article)
 
 ## 独立脚本例子 | Standalone Script Example
