@@ -1,0 +1,22 @@
+// Brook 如何跳过域名而不考虑其 IP
+// https://www.txthinking.com/talks/articles/brook-bypass-domain.article
+// How Brook bypass domain regardless of their IP
+// https://www.txthinking.com/talks/articles/brook-bypass-domain-en.article
+
+text := import("text")
+f := func() {
+  if in_dnsquery {
+      // if GUI bypass domain has no this domain, then this code is not required
+      if in_dnsquery.domain == "http3.ooo" {
+          return {forcefakedns: true}
+      }
+  }
+  if in_address {
+      if in_address.domainaddress {
+          if text.has_prefix(in_address.domainaddress, "http3.ooo:") {
+              return { ipaddressfrombypassdns: "A", bypass: true }
+          }
+      }
+  }
+}
+out := f()
