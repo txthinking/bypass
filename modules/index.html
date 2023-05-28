@@ -41,11 +41,13 @@
                         return {
                             modules: [],
                             url: "",
+                            ing0: false,
                             ing: false,
                             zh: navigator.language.toLowerCase().startsWith("zh-"),
                         };
                     },
                     async mounted() {
+                        this.ing0 = true;
                         try{
                             var res = await fetch("https://raw.githubusercontent.com/txthinking/bypass/master/modules/modules.json");
                             if(res.status != 200){
@@ -57,8 +59,9 @@
                                 return v;
                             });
                         }catch(e){
-                            alert(`${e}`);
+                            alert(`${e} ` + (this.zh ? '无法连接互联网?' : 'Cannot connect to internet?'));
                         }
+                        this.ing0 = false;
                     },
                     methods: {
                         async generate() {
@@ -187,6 +190,9 @@ out := f()
             <h5 v-if="!zh">Some functions cannot be abstracted into modules or are not convenient for public sharing, so please write standalone scripts for more powerful and flexible functions. <a href="https://brook.app">Documentation</a> and <a href="https://github.com/txthinking/bypass">Examples</a>.</h5>
             <h2 v-if="zh">选择你要开启的模块</h2>
             <h2 v-if="!zh">Select the module you want to activate</h2>
+            <div v-if="ing0">
+                <h2 aria-busy="true"></h2>
+            </div>
             <div style="padding-bottom:30px;" v-for="(v, i) in modules">
                 <label>
                     <input type="checkbox" @click="this.modules[i].switch = !this.modules[i].switch">
