@@ -5,3 +5,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bash ./test/test.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: out
+          path: ./out/hello
