@@ -1,11 +1,7 @@
 on: workflow_dispatch
 jobs:
   fuckyaml:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - run: bash ./test/test.sh
-      - uses: actions/upload-artifact@v3
-        with:
-          name: out
-          path: ./out/hello
